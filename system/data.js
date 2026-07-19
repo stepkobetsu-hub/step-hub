@@ -37,15 +37,15 @@ window.STEP_ASSETS = [
   },
   {
     "id": "past-exams",
-    "name": "過去問DB",
+    "name": "過去問保管DB",
     "category": "生徒・指導管理",
-    "status": "要確認",
-    "summary": "過去問情報の検索・管理",
-    "users": "管理者・スタッフ",
+    "status": "本番",
+    "summary": "定期テスト過去問・解答PDFの学校別、年度別、学年・科目別の保管・検索・提出管理",
+    "users": "管理者・スタッフ・生徒",
     "github": "",
     "publicUrl": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec",
-    "storage": "Apps Script／保存先不明",
-    "notes": "プロジェクトIDと関連Sheetを確認"
+    "storage": "Google Sheet＋Apps Script＋Google Drive",
+    "notes": "保存先とバインド型Apps Scriptを確認済み"
   },
   {
     "id": "step-message",
