@@ -147,7 +147,7 @@ window.STEP_ASSETS = [
     "id": "step-hub",
     "name": "STEP統合管理ポータル",
     "category": "共通基盤",
-    "status": "公開準備中",
+    "status": "本番",
     "summary": "全システム・Google Sheet・Apps Script・GitHub・公開URLの統合入口",
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/step-hub",
