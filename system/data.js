@@ -40,12 +40,13 @@ window.STEP_ASSETS = [
     "name": "過去問保管DB",
     "category": "生徒・指導管理",
     "status": "本番",
-    "summary": "定期テスト過去問・解答PDFの学校別、年度別、学年・科目別の保管・検索・提出管理",
+    "summary": "定期テスト過去問・解答PDFの保管、検索、閲覧、提出管理",
     "users": "管理者・スタッフ・生徒",
     "github": "",
     "publicUrl": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec",
+    "publicLabel": "過去問DBを開く",
     "storage": "Google Sheet＋Apps Script＋Google Drive",
-    "notes": "保存先とバインド型Apps Scriptを確認済み"
+    "notes": "検索・閲覧はログイン不要"
   },
   {
     "id": "step-message",
