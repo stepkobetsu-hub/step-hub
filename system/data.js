@@ -44,7 +44,7 @@ window.STEP_ASSETS = [
     "users": "管理者・スタッフ・生徒",
     "github": "",
     "publicUrl": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec",
-    "publicLabel": "過去問DBを開く",
+    "publicLabel": "📚 過去問DBを開く",
     "storage": "Google Sheet＋Apps Script＋Google Drive",
     "notes": "検索・閲覧はログイン不要"
   },
