@@ -43,7 +43,7 @@ window.STEP_ASSETS = [
     "summary": "定期テスト過去問・解答PDFの保管、検索、閲覧、提出管理",
     "users": "管理者・スタッフ・生徒",
     "github": "",
-    "publicUrl": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html",
     "publicLabel": "📚 過去問DBを開く",
     "storage": "Google Sheet＋Apps Script＋Google Drive",
     "notes": "検索・閲覧はログイン不要"
