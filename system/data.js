@@ -13,27 +13,27 @@ window.STEP_ASSETS = [
   },
   {
     "id": "seiseki",
-    "name": "スタッフ用アプリ／成績管理",
+    "name": "エントリーシート読み取り",
     "category": "生徒・指導管理",
     "status": "本番",
-    "summary": "成績・面談・志望校・受付カード・各種スタッフ機能の入口",
+    "summary": "OCRで読み取った入塾時情報を成績管理システムへ登録する機能",
     "users": "管理者・スタッフ",
     "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
-    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
-    "storage": "Google Sheet／Supabase移行中",
-    "notes": "受付カード・エントリーシート・面談メモの実体を追加調査"
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html",
+    "storage": "Google Sheet＋Apps Script＋GitHub Pages",
+    "notes": "保存先：入塾時情報データシート／成績管理システム内の機能"
   },
   {
     "id": "juku-card",
     "name": "受付カード読み取り",
     "category": "生徒・指導管理",
-    "status": "要確認",
-    "summary": "受付カードOCR・生徒情報取込",
+    "status": "本番",
+    "summary": "受付カードの登録・一覧管理・印刷を行うシステム",
     "users": "管理者・スタッフ",
     "github": "",
     "publicUrl": "",
-    "storage": "Google Sheet",
-    "notes": "GitHub・公開URLを確認中"
+    "storage": "Google Sheet＋Apps Script",
+    "notes": "受付カード一覧シートへ保存"
   },
   {
     "id": "past-exams",
@@ -123,20 +123,20 @@ window.STEP_ASSETS = [
     "id": "billing",
     "name": "請求管理システム",
     "category": "経理・請求管理",
-    "status": "本番要特定",
-    "summary": "月謝・講習・教材・模試・割引・CSV出力",
+    "status": "本番",
+    "summary": "請求作成・料金管理・兄弟割引・教材・模試・CSV出力・請求書PDF・メール送信を行うシステム",
     "users": "管理者",
     "github": "",
     "publicUrl": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec",
     "storage": "Google Sheet＋Apps Script",
-    "notes": "本番Apps Scriptの対応関係を管理台帳で確認中"
+    "notes": "本番運用中"
   },
   {
     "id": "contact",
     "name": "お問い合わせ管理",
     "category": "入塾・営業管理",
     "status": "本番",
-    "summary": "お問い合わせ受付、自動返信、塾への通知、Google連絡先登録、週次確認",
+    "summary": "お問い合わせの受信、自動返信、塾への通知、Google連絡先登録、週次確認",
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/step-form",
     "publicUrl": "https://stepkobetsu-hub.github.io/step-form/contact_form.html",
