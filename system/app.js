@@ -68,7 +68,7 @@ function render(){
     node.querySelector(".notes").textContent = asset.notes || "なし";
     const links = node.querySelector(".links");
     [
-      ["アプリを開く", asset.publicUrl],
+      [asset.publicLabel || "アプリを開く", asset.publicUrl],
       ["GitHub", asset.github],
     ].forEach(([label,url]) => {
       const a = linkButton(label,url);
