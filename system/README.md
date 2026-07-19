@@ -1,6 +1,6 @@
 # STEP 統合管理ポータル（公開安全版）
 
-更新日: 2026-07-20  
+更新日: 2026-07-20
 公開URL: `https://stepkobetsu-hub.github.io/step-hub/system/`
 
 ## このページについて
