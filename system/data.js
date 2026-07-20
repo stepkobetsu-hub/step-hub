@@ -1,9 +1,9 @@
-// STEP統合管理ポータル Ver.2 正本台帳データ
-// 更新日: 2026-07-20
+// STEP統合管理ポータル Ver.2.1 正本台帳データ
+// 更新日: 2026-07-21
 // 原則: 正本・最新版が確認できない場合は推測で変更しない。
 window.STEP_PORTAL_META = {
-  version: "2.0",
-  updatedAt: "2026-07-20",
+  version: "2.1",
+  updatedAt: "2026-07-21",
   sourceOfTruth: "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
   dataFile: "system/data.js",
   rule: "本番反映後に正本・版・確認日・変更履歴を更新する"
@@ -35,16 +35,88 @@ window.STEP_ASSETS = [
     }
   },
   {
+    "id": "staff-app",
+    "name": "スタッフ用アプリ",
+    "category": "共通基盤",
+    "status": "本番",
+    "summary": "スタッフ向けの主要ページをまとめたログイン付き入口",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "GitHub Pages＋成績管理共通基盤",
+    "notes": "講師ポータル下部の「スタッフ用アプリ」から開く主要入口。各重要機能はSTEP統合管理ポータルでも独立カードとして管理",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "index.html（スタッフ用アプリ入口）",
+    "spreadsheetId": "",
+    "appsScriptType": "各リンク先システムに依存",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "講師ポータルのスタッフ用リンク、公開URL、GitHub mainのindex.htmlを照合",
+      "changeRule": "スタッフ向け主要ページを追加・変更するときはseiseki-kanri/index.htmlとSTEP統合管理ポータルを同時更新"
+    }
+  },
+  {
+    "id": "grade-management",
+    "name": "成績管理",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "成績・通知表・指導情報を管理する中心システム",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "Google Sheet＋Apps Script＋GitHub Pages",
+    "notes": "スタッフ用アプリから利用。エントリーシート読み取りは別の「入塾書類・受付管理」エリアで管理",
+    "sourceType": "GitHub Pages＋Google Sheet＋Apps Script",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "成績管理本体一式（直接入口ファイルは追加確認）",
+    "spreadsheetId": "成績管理データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開入口・GitHub確認済／直接入口と保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "スタッフ用アプリ、GitHub main、成績管理の直接入口、保存先Sheet・Apps Scriptを照合",
+      "changeRule": "成績管理本体、面談メモ、入塾書類読取を別カードで維持し、変更時は相互リンクを確認"
+    }
+  },
+  {
+    "id": "meeting-memo",
+    "name": "面談メモ",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "面談・電話・相談内容の登録と、生徒別履歴の確認",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/meeting_memo.html",
+    "storage": "成績管理共通基盤＋GitHub Pages",
+    "notes": "成績管理リポジトリ内の重要な独立ページ。スタッフ用アプリからも開く",
+    "sourceType": "GitHub Pages＋成績管理共通基盤",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "meeting_memo.html",
+    "spreadsheetId": "成績管理側データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開ページ・ソース確認済／保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "公開URLとGitHub mainのmeeting_memo.htmlを照合し、保存先API・Sheetを追加確認",
+      "changeRule": "meeting_memo.htmlを修正した場合は公開動作・保存先・スタッフ用アプリのリンクを同時確認"
+    }
+  },
+  {
     "id": "seiseki",
     "name": "エントリーシート読み取り",
-    "category": "生徒・指導管理",
+    "category": "入塾書類・受付管理",
     "status": "本番",
     "summary": "OCRで読み取った入塾時情報を成績管理システムへ登録する機能",
     "users": "管理者・スタッフ",
     "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
     "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html",
     "storage": "Google Sheet＋Apps Script＋GitHub Pages",
-    "notes": "保存先：入塾時情報データシート／成績管理システム内の機能",
+    "notes": "成績管理とは別性格の入塾書類読取機能。受付カード読み取りと同じ「入塾書類・受付管理」エリアで管理",
     "sourceType": "GitHub＋Google Sheet",
     "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
     "sourceFile": "entry_import.html（エントリーシート読み取り）／成績管理リポジトリ内一式",
@@ -55,20 +127,20 @@ window.STEP_ASSETS = [
       "latestStatus": "要確認",
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub本番ブランチと公開URLを照合",
-      "changeRule": "entry_import.htmlは独立システムとして作り直さない"
+      "changeRule": "entry_import.htmlの公開URL・GitHub・保存先を一体管理し、成績管理カードへ統合表示しない"
     }
   },
   {
     "id": "juku-card",
     "name": "受付カード読み取り",
-    "category": "生徒・指導管理",
+    "category": "入塾書類・受付管理",
     "status": "本番",
     "summary": "受付カードの登録・一覧管理・印刷を行うシステム",
     "users": "管理者・スタッフ",
     "github": "",
     "publicUrl": "",
     "storage": "Google Sheet＋Apps Script",
-    "notes": "受付カード一覧シートへ保存",
+    "notes": "受付カード一覧シートへ保存。エントリーシート読み取りと同じ「入塾書類・受付管理」エリアで管理",
     "sourceType": "Google Sheetバインド型Apps Script",
     "sourceOfTruth": "Google Sheet: 16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
     "sourceFile": "紐づくApps Scriptプロジェクト",
