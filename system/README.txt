@@ -1,39 +1,13 @@
-# STEP HUB 2.0 初期ファイル
+STEP統合管理ポータル Ver.2.2（完全データ駆動版）
 
-## ファイル
-- index.html：保護者ポータル本体
-- admin.html：管理画面の見た目だけの初期案
-- Code.gs：Googleスプレッドシートからお知らせを読み込むGASサンプル
+GitHubの stepkobetsu-hub/step-hub/system/ に、次の4ファイルを上書きしてください。
+- index.html
+- style.css
+- app.js
+- data.js
 
-## まずやること
-1. GitHub Pages に index.html と admin.html を置く
-2. Googleスプレッドシートを作る
-3. Apps Script に Code.gs を貼る
-4. Webアプリとして公開
-5. index.html の `GAS_URL = "";` に WebアプリURLを入れる
-
-## スプレッドシート構成
-
-### 今日のお知らせ
-A1: 表示内容
-A2: 本日は通常授業です。
-
-### お知らせ
-A: 掲載日
-B: タイトル
-C: 本文
-D: 詳細URL
-E: 重要度
-F: 状態
-
-状態は「掲載」にすると表示されます。
-
-### リンク設定
-A: key
-B: url
-
-key例:
-testUpload
-forest
-pastExam
-forms
+重要:
+・今回は data.js だけではなく4ファイルすべて置き換えます。
+・ボタン名、リンク、分類、状態、説明は今後 data.js だけで変更できます。
+・エントリーシート読み取りは「入塾書類・受付管理」に分離済みです。
+・ボタン名は「エントリーシートの読み取りアプリを開く」です。

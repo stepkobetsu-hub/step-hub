@@ -1,222 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>個別指導STEP 保護者ポータル</title>
-  <style>
-    :root{
-      --main:#1f6fb2;
-      --sub:#eaf4ff;
-      --text:#233043;
-      --muted:#667085;
-      --card:#ffffff;
-      --border:#d9e6f2;
-      --danger:#d64545;
-      --ok:#168a4a;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;
-      background:#f5f8fb;
-      color:var(--text);
-    }
-    .wrap{max-width:880px;margin:0 auto;padding:16px 14px 56px}
-    header{
-      background:linear-gradient(135deg,#1f6fb2,#3ca0dd);
-      color:white;
-      border-radius:18px;
-      padding:24px 18px;
-      box-shadow:0 8px 24px rgba(31,111,178,.18);
-    }
-    .school{font-size:14px;opacity:.92;margin-bottom:6px}
-    h1{font-size:25px;margin:0 0 8px;letter-spacing:.02em}
-    .lead{font-size:14px;line-height:1.7;margin:0;opacity:.95}
-    .status{
-      margin:16px 0;
-      border-radius:16px;
-      background:var(--card);
-      border:1px solid var(--border);
-      padding:14px;
-    }
-    .status h2,.section h2{font-size:18px;margin:0 0 10px}
-    .today-box{
-      background:var(--sub);
-      border-left:5px solid var(--main);
-      padding:12px;
-      border-radius:12px;
-      line-height:1.7;
-      font-size:15px;
-      white-space:pre-line;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-    .card{
-      display:block;
-      text-decoration:none;
-      color:var(--text);
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:15px;
-      min-height:94px;
-      box-shadow:0 3px 12px rgba(20,60,100,.05);
-    }
-    .card .icon{font-size:27px;line-height:1;margin-bottom:8px}
-    .card .title{font-weight:700;font-size:16px;margin-bottom:4px}
-    .card .desc{font-size:12.5px;color:var(--muted);line-height:1.45}
-    .section{
-      margin-top:18px;
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px;
-    }
-    .news-list{display:flex;flex-direction:column;gap:10px}
-    .news{
-      border-bottom:1px solid #edf2f7;
-      padding-bottom:10px;
-    }
-    .news:last-child{border-bottom:0;padding-bottom:0}
-    .news-date{font-size:12px;color:var(--muted)}
-    .news-title{font-weight:700;margin:3px 0}
-    .news-body{font-size:13.5px;color:#3d4b5c;line-height:1.55;white-space:pre-line}
-    .news a{color:var(--main);font-weight:700}
-    footer{
-      text-align:center;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:28px;
-      line-height:1.7;
-    }
-    .admin-link{
-      display:inline-block;margin-top:10px;color:var(--muted);font-size:12px;
-    }
-    @media (min-width:720px){
-      .grid{grid-template-columns:repeat(3,1fr)}
-      h1{font-size:30px}
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>STEP総合管理ポータル</title>
+  <link rel="stylesheet" href="style.css?v=20260721-v22">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="school">個別指導STEP</div>
-      <h1>保護者ポータル</h1>
-      <p class="lead">お知らせ、年間予定、面談予約、成績管理など、塾からのご案内をこちらにまとめています。</p>
-    </header>
-
-    <section class="status">
-      <h2>📢 今日のお知らせ</h2>
-      <div id="todayNotice" class="today-box">読み込み中です...</div>
-    </section>
-
-    <nav class="grid" aria-label="メニュー">
-      <a class="card" href="https://www.step-edu.net/line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8">
-        <div class="icon">📅</div><div class="title">年間予定・模試</div><div class="desc">年間カレンダー、全県模試、休校案内など</div>
-      </a>
-      <a class="card" href="https://www.step-edu.net/hogokonyoyaku">
-        <div class="icon">👨‍🏫</div><div class="title">保護者面談予約</div><div class="desc">神領校・大手町校の面談予約ページ</div>
-      </a>
-      <a class="card" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html">
-        <div class="icon">📊</div><div class="title">成績管理</div><div class="desc">定期テスト・通知表・志望校の入力</div>
-      </a>
-      <a class="card" href="https://stepkobetsu-hub.github.io/touroku/touroku.html">
-        <div class="icon">📝</div><div class="title">生徒・保護者登録</div><div class="desc">新入塾生用の登録フォーム</div>
-      </a>
-      <a class="card" href="#" id="testUploadLink">
-        <div class="icon">📷</div><div class="title">定期テストアップロード</div><div class="desc">定期テスト画像の提出ページ</div>
-      </a>
-      <a class="card" href="#" id="forestLink">
-        <div class="icon">🎥</div><div class="title">フォレスタプラス</div><div class="desc">映像授業・演習結果入力</div>
-      </a>
-      <a class="card" href="#" id="pastExamLink">
-        <div class="icon">📚</div><div class="title">過去問保管DB</div><div class="desc">定期テスト過去問・教材保管</div>
-      </a>
-      <a class="card" href="#" id="formsLink">
-        <div class="icon">📄</div><div class="title">各種届出</div><div class="desc">入退くんメール追加、変更届など</div>
-      </a>
-      <a class="card" href="https://lin.ee/5n3lEXa">
-        <div class="icon">💬</div><div class="title">公式LINE</div><div class="desc">個別のご相談・ご連絡はこちら</div>
-      </a>
+  <header class="site-header">
+    <div>
+      <h1>🛡️ STEP総合管理ポータル</h1>
+      <p>権限4の管理者専用。利用・管理・共有用の入口をまとめて確認できます。</p>
+      <small id="version"></small>
+    </div>
+    <nav>
+      <a href="https://stepkobetsu-hub.github.io/seiseki-kanri/">スタッフ用アプリへ戻る</a>
     </nav>
+  </header>
 
-    <section class="section">
-      <h2>🗂 教室からのお知らせ</h2>
-      <div id="newsList" class="news-list">読み込み中です...</div>
+  <main>
+    <section class="filters" aria-label="絞り込み">
+      <input id="search" type="search" placeholder="システム名・概要・担当・注意事項を検索">
+      <select id="category"><option value="">すべての分類</option></select>
+      <select id="status"><option value="">すべての状態</option></select>
+      <button id="clear" type="button">クリア</button>
     </section>
+    <p id="count" class="count"></p>
+    <section id="grid" class="grid"></section>
+  </main>
 
-    <footer>
-      個別指導STEP 神領校・大手町校<br>
-      運営会社：株式会社エデュクレスト
-      <br><a class="admin-link" href="./admin.html">管理者用</a>
-    </footer>
-  </div>
-
-<script>
-/**
- * GAS WebアプリURLを設定してください。
- * まだ未設定の場合は、下のサンプル表示になります。
- */
-const GAS_URL = "";
-
-const DEFAULT_DATA = {
-  today: "本日は通常授業です。\n重要なお知らせがある場合はこちらに表示します。",
-  links: {
-    testUpload: "#",
-    forest: "#",
-    pastExam: "#",
-    forms: "https://www.step-edu.net/line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%83%9B%E3%83%BC%E3%82%B8"
-  },
-  news: [
-    {date:"2026/07/02", title:"STEP HUB準備中", body:"保護者向けのお知らせをこのページに集約していきます。", url:""}
-  ]
-};
-
-function applyData(data){
-  document.getElementById("todayNotice").textContent = data.today || DEFAULT_DATA.today;
-
-  if(data.links){
-    if(data.links.testUpload) document.getElementById("testUploadLink").href = data.links.testUpload;
-    if(data.links.forest) document.getElementById("forestLink").href = data.links.forest;
-    if(data.links.pastExam) document.getElementById("pastExamLink").href = data.links.pastExam;
-    if(data.links.forms) document.getElementById("formsLink").href = data.links.forms;
-  }
-
-  const news = Array.isArray(data.news) ? data.news : [];
-  const list = document.getElementById("newsList");
-  if(!news.length){
-    list.textContent = "現在、掲載中のお知らせはありません。";
-    return;
-  }
-  list.innerHTML = news.map(n => `
-    <article class="news">
-      <div class="news-date">${escapeHtml(n.date || "")}</div>
-      <div class="news-title">${escapeHtml(n.title || "")}</div>
-      <div class="news-body">${escapeHtml(n.body || "")}</div>
-      ${n.url ? `<a href="${escapeAttr(n.url)}">詳しく見る</a>` : ""}
-    </article>
-  `).join("");
-}
-
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function escapeAttr(s){ return escapeHtml(s); }
-
-if(GAS_URL){
-  fetch(GAS_URL)
-    .then(r => r.json())
-    .then(applyData)
-    .catch(() => applyData(DEFAULT_DATA));
-}else{
-  applyData(DEFAULT_DATA);
-}
-</script>
+  <script src="data.js?v=20260721-v22"></script>
+  <script src="app.js?v=20260721-v22"></script>
 </body>
 </html>
