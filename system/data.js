@@ -1,3 +1,14 @@
+// STEP統合管理ポータル Ver.2 正本台帳データ
+// 更新日: 2026-07-20
+// 原則: 正本・最新版が確認できない場合は推測で変更しない。
+window.STEP_PORTAL_META = {
+  version: "2.0",
+  updatedAt: "2026-07-20",
+  sourceOfTruth: "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
+  dataFile: "system/data.js",
+  rule: "本番反映後に正本・版・確認日・変更履歴を更新する"
+};
+
 window.STEP_ASSETS = [
   {
     "id": "student-master",
@@ -9,7 +20,19 @@ window.STEP_ASSETS = [
     "github": "",
     "publicUrl": "",
     "storage": "Google Sheet",
-    "notes": "各システムの共通生徒マスタ候補"
+    "notes": "各システムの共通生徒マスタ候補",
+    "sourceType": "Google Sheet",
+    "sourceOfTruth": "要確認",
+    "sourceFile": "要確認",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Google Sheet ID・関連Apps Script・利用システムを特定する",
+      "changeRule": "正本確定前は修正しない"
+    }
   },
   {
     "id": "seiseki",
@@ -21,7 +44,19 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
     "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html",
     "storage": "Google Sheet＋Apps Script＋GitHub Pages",
-    "notes": "保存先：入塾時情報データシート／成績管理システム内の機能"
+    "notes": "保存先：入塾時情報データシート／成績管理システム内の機能",
+    "sourceType": "GitHub＋Google Sheet",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "entry_import.html（エントリーシート読み取り）／成績管理リポジトリ内一式",
+    "spreadsheetId": "1Zq3AbL9Fx_skBUibh2F73kyWlw9Ionh3-dTOtots0D8",
+    "appsScriptType": "成績管理側構成を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub本番ブランチと公開URLを照合",
+      "changeRule": "entry_import.htmlは独立システムとして作り直さない"
+    }
   },
   {
     "id": "juku-card",
@@ -33,7 +68,19 @@ window.STEP_ASSETS = [
     "github": "",
     "publicUrl": "",
     "storage": "Google Sheet＋Apps Script",
-    "notes": "受付カード一覧シートへ保存"
+    "notes": "受付カード一覧シートへ保存",
+    "sourceType": "Google Sheetバインド型Apps Script",
+    "sourceOfTruth": "Google Sheet: 16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
+    "sourceFile": "紐づくApps Scriptプロジェクト",
+    "spreadsheetId": "16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
+    "appsScriptType": "バインド型",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "スプレッドシートの「拡張機能→Apps Script」で確認",
+      "changeRule": "GitHub管理の有無を確認してから修正"
+    }
   },
   {
     "id": "past-exams",
@@ -46,7 +93,21 @@ window.STEP_ASSETS = [
     "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html",
     "publicLabel": "📚 過去問DBを開く",
     "storage": "Google Sheet＋Apps Script＋Google Drive",
-    "notes": "検索・閲覧はログイン不要"
+    "notes": "検索・閲覧はログイン不要",
+    "sourceType": "Apps Script＋Google Sheet＋Drive",
+    "sourceOfTruth": "Apps Script本番デプロイ",
+    "sourceFile": "Apps Scriptプロジェクト一式",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "Apps Script Webアプリ",
+    "deploymentId": "AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj",
+    "version": "129",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Version 129・本番URL・管理画面を確認",
+      "changeRule": "デプロイIDを維持。通常・提出は認証不要、?mode=adminのみ認証"
+    }
   },
   {
     "id": "step-message",
@@ -58,7 +119,19 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/step-message-center",
     "publicUrl": "https://stepkobetsu-hub.github.io/step-message-center/",
     "storage": "Google Sheet＋Brevo",
-    "notes": "共通不達メール追跡を確認中"
+    "notes": "共通不達メール追跡を確認中",
+    "sourceType": "GitHub＋Google Sheet＋Brevo",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-message-center",
+    "sourceFile": "リポジトリ内一式",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub本番ブランチと公開URLを照合",
+      "changeRule": "Brevoキー等の秘密情報はポータルへ記載しない"
+    }
   },
   {
     "id": "delivery-failures",
@@ -70,7 +143,19 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd",
     "storage": "Google Sheet＋Brevo",
-    "notes": "完全削除の実データテストは未実施"
+    "notes": "完全削除の実データテストは未実施",
+    "sourceType": "GitHub＋Google Sheet＋Brevo",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/student-QR",
+    "sourceFile": "delivery_failures.html および関連コード",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "公開URLとstudent-QRリポジトリを照合",
+      "changeRule": "完全削除は実データテスト前に実施しない"
+    }
   },
   {
     "id": "teacher-portal",
@@ -82,7 +167,19 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/teacher-portal",
     "publicUrl": "https://stepkobetsu-hub.github.io/teacher-portal/",
     "storage": "GitHub Pages",
-    "notes": "授業報告・出退くんQR・給与明細等を集約"
+    "notes": "授業報告・出退くんQR・給与明細等を集約",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/teacher-portal",
+    "sourceFile": "リポジトリ内一式",
+    "spreadsheetId": "",
+    "appsScriptType": "",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
+      "changeRule": "各リンク先システムの正本は個別台帳で確認"
+    }
   },
   {
     "id": "teacher-master",
@@ -94,7 +191,19 @@ window.STEP_ASSETS = [
     "github": "",
     "publicUrl": "",
     "storage": "Google Sheet",
-    "notes": "給与明細WebアプリのApps ScriptとURLを確認"
+    "notes": "給与明細WebアプリのApps ScriptとURLを確認",
+    "sourceType": "Google Sheet",
+    "sourceOfTruth": "要確認",
+    "sourceFile": "給与明細Webアプリ関連Apps Script",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "講師マスターSheetと給与明細Webアプリを特定",
+      "changeRule": "正本と本番URL確定前は修正しない"
+    }
   },
   {
     "id": "qr-register",
@@ -105,8 +214,22 @@ window.STEP_ASSETS = [
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html",
-    "storage": "Google Sheet＋Apps Script",
-    "notes": "生徒・講師の両方を扱う共通基盤"
+    "storage": "Google Sheet＋GitHub Pages",
+    "notes": "保存先Sheetは入退室ログ。Sheetの拡張機能にバインド型Apps Scriptは存在しない",
+    "sourceType": "GitHub＋Google Sheet",
+    "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
+    "sourceFile": "student_qr_register.html／入退室ログSheet",
+    "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
+    "sheetNames": ["ログ", "Webhook診断", "不達メール管理", "講師勤怠ログ", "ポイント履歴"],
+    "appsScriptType": "なし（このSheetにはバインド型Apps Scriptなし）",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "入退室ログSheetを開き、保存データと拡張機能内にApps Scriptがないことを確認",
+      "changeRule": "QR作成・読取コードはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
+    }
   },
   {
     "id": "teacher-schedule",
@@ -118,7 +241,19 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/teacher_schedule",
     "publicUrl": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html",
     "storage": "Supabase＋Google Sheet",
-    "notes": "類似Sheet 2件とsummer-teacherの関係を確認"
+    "notes": "類似Sheet 2件とsummer-teacherの関係を確認",
+    "sourceType": "GitHub＋Supabase＋Google Sheet",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/teacher_schedule",
+    "sourceFile": "teacher_app.html および関連コード",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pages・Supabase・関連Sheetを照合",
+      "changeRule": "類似Sheet 2件とsummer-teacherとの関係を確認してから修正"
+    }
   },
   {
     "id": "billing",
@@ -130,7 +265,20 @@ window.STEP_ASSETS = [
     "github": "",
     "publicUrl": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec",
     "storage": "Google Sheet＋Apps Script",
-    "notes": "本番運用中"
+    "notes": "本番運用中",
+    "sourceType": "Google Sheetバインド型Apps Script",
+    "sourceOfTruth": "Google Sheet: 1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac",
+    "sourceFile": "紐づくApps Scriptプロジェクト",
+    "spreadsheetId": "1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac",
+    "appsScriptType": "バインド型Webアプリ",
+    "deploymentId": "AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "本番URL・デプロイ・SheetのApps Scriptを照合",
+      "changeRule": "既存デプロイIDを不用意に変更しない"
+    }
   },
   {
     "id": "contact",
@@ -142,7 +290,25 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/step-form",
     "publicUrl": "https://stepkobetsu-hub.github.io/step-form/contact_form.html",
     "storage": "Google Sheet＋Apps Script＋Gmail＋Google Contacts",
-    "notes": "Apps ScriptプロジェクトURLを台帳へ追加する"
+    "notes": "Apps ScriptプロジェクトURLを台帳へ追加する",
+    "sourceType": "Google Sheetバインド型Apps Script＋GitHub Pages",
+    "sourceOfTruth": "Google Sheet: 18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA",
+    "sourceFile": "問い合わせ.gs（フォーム処理・Google Contact登録）／contact_form.html（公開フォーム）",
+    "spreadsheetId": "18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA",
+    "sheetNames": [
+      "お問い合わせ",
+      "反応リスト"
+    ],
+    "appsScriptType": "バインド型",
+    "githubSource": "https://github.com/stepkobetsu-hub/step-form",
+    "maintenanceEmail": "mintcocoajasmine@gmail.com",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Sheetの拡張機能→Apps Scriptで問い合わせ.gsを確認し、フォーム送信・自動返信・Contact更新をテスト",
+      "changeRule": "同一電話番号は既存Contact名を最新版へ更新。週次確認先はmintcocoajasmine@gmail.com"
+    }
   },
   {
     "id": "step-hub",
@@ -154,6 +320,18 @@ window.STEP_ASSETS = [
     "github": "https://github.com/stepkobetsu-hub/step-hub",
     "publicUrl": "https://stepkobetsu-hub.github.io/step-hub/system/",
     "storage": "GitHub Pages",
-    "notes": "この初版をstep-hubへ配置して再利用する想定"
+    "notes": "この初版をstep-hubへ配置して再利用する想定",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-hub",
+    "sourceFile": "system/data.js および system/配下",
+    "spreadsheetId": "",
+    "appsScriptType": "",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
+      "changeRule": "新システム完成時はsystem/data.jsと正本情報を同時更新"
+    }
   }
 ];
