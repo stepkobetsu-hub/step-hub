@@ -1,12 +1,11 @@
-// STEP統合管理ポータル Ver.2 正本台帳データ
-// 更新日: 2026-07-20
-// 原則: 正本・最新版が確認できない場合は推測で変更しない。
+// STEP総合管理ポータル Ver.3.2 正本データ
+// 実リポジトリのsystem/data.jsを基準に、確認済みリンクを復元。
 window.STEP_PORTAL_META = {
-  version: "2.0",
-  updatedAt: "2026-07-20",
-  sourceOfTruth: "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
-  dataFile: "system/data.js",
-  rule: "本番反映後に正本・版・確認日・変更履歴を更新する"
+  "version": "3.2",
+  "updatedAt": "2026-07-21",
+  "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
+  "dataFile": "system/data.js",
+  "rule": "カード名・分類・ボタン名・リンク・保守情報はsystem/data.jsだけで変更する"
 };
 
 window.STEP_ASSETS = [
@@ -32,19 +31,133 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "Google Sheet ID・関連Apps Script・利用システムを特定する",
       "changeRule": "正本確定前は修正しない"
-    }
+    },
+    "links": []
+  },
+  {
+    "id": "staff-app",
+    "name": "スタッフ用アプリ",
+    "category": "共通基盤",
+    "status": "本番",
+    "summary": "スタッフ向けの主要ページをまとめたログイン付き入口",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "GitHub Pages＋成績管理共通基盤",
+    "notes": "講師ポータル下部の「スタッフ用アプリ」から開く主要入口。各重要機能はSTEP統合管理ポータルでも独立カードとして管理",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "index.html（スタッフ用アプリ入口）",
+    "spreadsheetId": "",
+    "appsScriptType": "各リンク先システムに依存",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "講師ポータルのスタッフ用リンク、公開URL、GitHub mainのindex.htmlを照合",
+      "changeRule": "スタッフ向け主要ページを追加・変更するときはseiseki-kanri/index.htmlとSTEP統合管理ポータルを同時更新"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "スタッフ用アプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "grade-management",
+    "name": "成績管理",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "成績・通知表・指導情報を管理する中心システム",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "Google Sheet＋Apps Script＋GitHub Pages",
+    "notes": "スタッフ用アプリから利用。エントリーシート読み取りは別の「入塾書類・受付管理」エリアで管理",
+    "sourceType": "GitHub Pages＋Google Sheet＋Apps Script",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "成績管理本体一式（直接入口ファイルは追加確認）",
+    "spreadsheetId": "成績管理データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開入口・GitHub確認済／直接入口と保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "スタッフ用アプリ、GitHub main、成績管理の直接入口、保存先Sheet・Apps Scriptを照合",
+      "changeRule": "成績管理本体、面談メモ、入塾書類読取を別カードで維持し、変更時は相互リンクを確認"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
+        "group": "利用する",
+        "label": "成績管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "meeting-memo",
+    "name": "面談メモ",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "面談・電話・相談内容の登録と、生徒別履歴の確認",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/meeting_memo.html",
+    "storage": "成績管理共通基盤＋GitHub Pages",
+    "notes": "成績管理リポジトリ内の重要な独立ページ。スタッフ用アプリからも開く",
+    "sourceType": "GitHub Pages＋成績管理共通基盤",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "meeting_memo.html",
+    "spreadsheetId": "成績管理側データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開ページ・ソース確認済／保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "公開URLとGitHub mainのmeeting_memo.htmlを照合し、保存先API・Sheetを追加確認",
+      "changeRule": "meeting_memo.htmlを修正した場合は公開動作・保存先・スタッフ用アプリのリンクを同時確認"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "面談メモを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/meeting_memo.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
   },
   {
     "id": "seiseki",
     "name": "エントリーシート読み取り",
-    "category": "生徒・指導管理",
+    "category": "入塾書類・受付管理",
     "status": "本番",
     "summary": "OCRで読み取った入塾時情報を成績管理システムへ登録する機能",
     "users": "管理者・スタッフ",
     "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
     "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html",
     "storage": "Google Sheet＋Apps Script＋GitHub Pages",
-    "notes": "保存先：入塾時情報データシート／成績管理システム内の機能",
+    "notes": "成績管理とは別性格の入塾書類読取機能。受付カード読み取りと同じ「入塾書類・受付管理」エリアで管理",
     "sourceType": "GitHub＋Google Sheet",
     "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
     "sourceFile": "entry_import.html（エントリーシート読み取り）／成績管理リポジトリ内一式",
@@ -55,20 +168,42 @@ window.STEP_ASSETS = [
       "latestStatus": "要確認",
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub本番ブランチと公開URLを照合",
-      "changeRule": "entry_import.htmlは独立システムとして作り直さない"
-    }
+      "changeRule": "entry_import.htmlの公開URL・GitHub・保存先を一体管理し、成績管理カードへ統合表示しない"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html"
+      },
+      {
+        "group": "利用する",
+        "label": "エントリーシートの読み取りアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1Zq3AbL9Fx_skBUibh2F73kyWlw9Ionh3-dTOtots0D8/edit"
+      }
+    ]
   },
   {
     "id": "juku-card",
     "name": "受付カード読み取り",
-    "category": "生徒・指導管理",
+    "category": "入塾書類・受付管理",
     "status": "本番",
     "summary": "受付カードの登録・一覧管理・印刷を行うシステム",
     "users": "管理者・スタッフ",
     "github": "",
     "publicUrl": "",
     "storage": "Google Sheet＋Apps Script",
-    "notes": "受付カード一覧シートへ保存",
+    "notes": "受付カード一覧シートへ保存。エントリーシート読み取りと同じ「入塾書類・受付管理」エリアで管理",
     "sourceType": "Google Sheetバインド型Apps Script",
     "sourceOfTruth": "Google Sheet: 16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
     "sourceFile": "紐づくApps Scriptプロジェクト",
@@ -80,7 +215,14 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "スプレッドシートの「拡張機能→Apps Script」で確認",
       "changeRule": "GitHub管理の有無を確認してから修正"
-    }
+    },
+    "links": [
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit"
+      }
+    ]
   },
   {
     "id": "past-exams",
@@ -107,7 +249,24 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "Version 129・本番URL・管理画面を確認",
       "changeRule": "デプロイIDを維持。通常・提出は認証不要、?mode=adminのみ認証"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html"
+      },
+      {
+        "group": "利用する",
+        "label": "過去問DBを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html"
+      },
+      {
+        "group": "利用する",
+        "label": "Apps Script Webアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec"
+      }
+    ]
   },
   {
     "id": "step-message",
@@ -131,7 +290,24 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub本番ブランチと公開URLを照合",
       "changeRule": "Brevoキー等の秘密情報はポータルへ記載しない"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-message-center/"
+      },
+      {
+        "group": "利用する",
+        "label": "STEP配信システムを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-message-center/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-message-center"
+      }
+    ]
   },
   {
     "id": "delivery-failures",
@@ -155,7 +331,24 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "公開URLとstudent-QRリポジトリを照合",
       "changeRule": "完全削除は実データテスト前に実施しない"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
+      },
+      {
+        "group": "利用する",
+        "label": "不達メール管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/student-QR"
+      }
+    ]
   },
   {
     "id": "teacher-portal",
@@ -179,7 +372,24 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
       "changeRule": "各リンク先システムの正本は個別台帳で確認"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "ポータルを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher-portal/"
+      },
+      {
+        "group": "利用する",
+        "label": "講師ポータルを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher-portal/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/teacher-portal"
+      }
+    ]
   },
   {
     "id": "teacher-master",
@@ -203,7 +413,8 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "講師マスターSheetと給与明細Webアプリを特定",
       "changeRule": "正本と本番URL確定前は修正しない"
-    }
+    },
+    "links": []
   },
   {
     "id": "qr-register",
@@ -221,7 +432,13 @@ window.STEP_ASSETS = [
     "sourceFile": "student_qr_register.html／入退室ログSheet",
     "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
-    "sheetNames": ["ログ", "Webhook診断", "不達メール管理", "講師勤怠ログ", "ポイント履歴"],
+    "sheetNames": [
+      "ログ",
+      "Webhook診断",
+      "不達メール管理",
+      "講師勤怠ログ",
+      "ポイント履歴"
+    ],
     "appsScriptType": "なし（このSheetにはバインド型Apps Scriptなし）",
     "maintenance": {
       "owner": "STEP管理者",
@@ -229,7 +446,29 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-21",
       "verifyMethod": "入退室ログSheetを開き、保存データと拡張機能内にApps Scriptがないことを確認",
       "changeRule": "QR作成・読取コードはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
+      },
+      {
+        "group": "利用する",
+        "label": "出退くんQR作成を開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/student-QR"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0"
+      }
+    ]
   },
   {
     "id": "teacher-schedule",
@@ -253,7 +492,24 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub Pages・Supabase・関連Sheetを照合",
       "changeRule": "類似Sheet 2件とsummer-teacherとの関係を確認してから修正"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html"
+      },
+      {
+        "group": "利用する",
+        "label": "講師予定登録を開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/teacher_schedule"
+      }
+    ]
   },
   {
     "id": "billing",
@@ -278,7 +534,29 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "本番URL・デプロイ・SheetのApps Scriptを照合",
       "changeRule": "既存デプロイIDを不用意に変更しない"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "利用する",
+        "label": "請求管理システムを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "利用する",
+        "label": "Apps Script Webアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac/edit"
+      }
+    ]
   },
   {
     "id": "contact",
@@ -308,7 +586,29 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "Sheetの拡張機能→Apps Scriptで問い合わせ.gsを確認し、フォーム送信・自動返信・Contact更新をテスト",
       "changeRule": "同一電話番号は既存Contact名を最新版へ更新。週次確認先はmintcocoajasmine@gmail.com"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-form/contact_form.html"
+      },
+      {
+        "group": "利用する",
+        "label": "お問い合わせ管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/step-form/contact_form.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-form"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA/edit"
+      }
+    ]
   },
   {
     "id": "step-hub",
@@ -332,6 +632,23 @@ window.STEP_ASSETS = [
       "lastVerified": "2026-07-20",
       "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
       "changeRule": "新システム完成時はsystem/data.jsと正本情報を同時更新"
-    }
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-hub/system/"
+      },
+      {
+        "group": "利用する",
+        "label": "STEP統合管理ポータルを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-hub/system/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-hub"
+      }
+    ]
   }
 ];
