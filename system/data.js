@@ -1,11 +1,11 @@
-// STEP統合管理ポータル Ver.2.2 完全データ駆動版
-// ボタン名・リンク・分類・状態・説明は、すべてこのファイルで管理します。
+// STEP総合管理ポータル Ver.3.2 正本データ
+// 実リポジトリのsystem/data.jsを基準に、確認済みリンクを復元。
 window.STEP_PORTAL_META = {
-  "version": "2.2",
+  "version": "3.2",
   "updatedAt": "2026-07-21",
   "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
   "dataFile": "system/data.js",
-  "rule": "カード名・分類・ボタン名・リンク・保守情報はdata.jsだけで変更する"
+  "rule": "カード名・分類・ボタン名・リンク・保守情報はsystem/data.jsだけで変更する"
 };
 
 window.STEP_ASSETS = [
@@ -100,6 +100,11 @@ window.STEP_ASSETS = [
         "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
       },
       {
+        "group": "利用する",
+        "label": "成績管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
@@ -172,9 +177,19 @@ window.STEP_ASSETS = [
         "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html"
       },
       {
+        "group": "利用する",
+        "label": "エントリーシートの読み取りアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html"
+      },
+      {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1Zq3AbL9Fx_skBUibh2F73kyWlw9Ionh3-dTOtots0D8/edit"
       }
     ]
   },
@@ -201,7 +216,13 @@ window.STEP_ASSETS = [
       "verifyMethod": "スプレッドシートの「拡張機能→Apps Script」で確認",
       "changeRule": "GitHub管理の有無を確認してから修正"
     },
-    "links": []
+    "links": [
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit"
+      }
+    ]
   },
   {
     "id": "past-exams",
@@ -234,6 +255,16 @@ window.STEP_ASSETS = [
         "group": "利用する",
         "label": "利用者向けアプリを開く",
         "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html"
+      },
+      {
+        "group": "利用する",
+        "label": "過去問DBを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html"
+      },
+      {
+        "group": "利用する",
+        "label": "Apps Script Webアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj/exec"
       }
     ]
   },
@@ -264,6 +295,11 @@ window.STEP_ASSETS = [
       {
         "group": "利用する",
         "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-message-center/"
+      },
+      {
+        "group": "利用する",
+        "label": "STEP配信システムを開く",
         "url": "https://stepkobetsu-hub.github.io/step-message-center/"
       },
       {
@@ -303,6 +339,11 @@ window.STEP_ASSETS = [
         "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
       },
       {
+        "group": "利用する",
+        "label": "不達メール管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
+      },
+      {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/student-QR"
@@ -336,6 +377,11 @@ window.STEP_ASSETS = [
       {
         "group": "利用する",
         "label": "ポータルを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher-portal/"
+      },
+      {
+        "group": "利用する",
+        "label": "講師ポータルを開く",
         "url": "https://stepkobetsu-hub.github.io/teacher-portal/"
       },
       {
@@ -408,9 +454,19 @@ window.STEP_ASSETS = [
         "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
       },
       {
+        "group": "利用する",
+        "label": "出退くんQR作成を開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
+      },
+      {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/student-QR"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0"
       }
     ]
   },
@@ -441,6 +497,11 @@ window.STEP_ASSETS = [
       {
         "group": "利用する",
         "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html"
+      },
+      {
+        "group": "利用する",
+        "label": "講師予定登録を開く",
         "url": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html"
       },
       {
@@ -479,6 +540,21 @@ window.STEP_ASSETS = [
         "group": "利用する",
         "label": "利用者向けアプリを開く",
         "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "利用する",
+        "label": "請求管理システムを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "利用する",
+        "label": "Apps Script Webアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac/edit"
       }
     ]
   },
@@ -518,9 +594,19 @@ window.STEP_ASSETS = [
         "url": "https://stepkobetsu-hub.github.io/step-form/contact_form.html"
       },
       {
+        "group": "利用する",
+        "label": "お問い合わせ管理を開く",
+        "url": "https://stepkobetsu-hub.github.io/step-form/contact_form.html"
+      },
+      {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/step-form"
+      },
+      {
+        "group": "管理する",
+        "label": "Google Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA/edit"
       }
     ]
   },
@@ -551,6 +637,11 @@ window.STEP_ASSETS = [
       {
         "group": "利用する",
         "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-hub/system/"
+      },
+      {
+        "group": "利用する",
+        "label": "STEP統合管理ポータルを開く",
         "url": "https://stepkobetsu-hub.github.io/step-hub/system/"
       },
       {
