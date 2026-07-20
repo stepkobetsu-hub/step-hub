@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>STEP総合管理ポータル Ver.3.1</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:#102a43;background:#f3f7fb}
+*{box-sizing:border-box}body{margin:0}.site-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding:16px max(16px,calc((100vw - 1200px)/2));background:#fff;border-bottom:1px solid #d8e3ef}
+h1{margin:0;font-size:clamp(24px,3vw,36px)}.site-header p{margin:6px 0;color:#58718a}.site-header nav a{display:inline-block;padding:12px 16px;border-radius:10px;background:#e8f0f8;color:#102a43;text-decoration:none;font-weight:700}
+main{max-width:1200px;margin:auto;padding:20px 14px}.filters{display:grid;grid-template-columns:minmax(260px,1fr) 200px 200px auto;gap:10px}.filters input,.filters select,.filters button{min-height:44px;border:1px solid #b7c9dc;border-radius:10px;background:white;padding:0 12px;font-size:15px}.filters button{font-weight:700;background:#e8f0f8;cursor:pointer}.count{font-weight:700;color:#58718a}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.system-card{background:white;border:1px solid #d4e1ee;border-radius:16px;padding:16px;box-shadow:0 4px 14px rgba(30,70,110,.06)}.card-head{display:flex;justify-content:space-between;gap:14px}.card-head h2{margin:0;font-size:21px}.meta,.maintenance,.notes{font-size:13px;color:#58718a}.summary{font-size:16px;border-bottom:1px solid #e2eaf2;padding-bottom:14px}.status{height:max-content;padding:5px 10px;border-radius:999px;font-weight:700;font-size:12px;background:#fff3cd;color:#7a5900}.status.本番{background:#e1f7ec;color:#087443}.action-group{border-bottom:1px solid #e2eaf2;padding:4px 0 10px}.action-group h3{font-size:14px;margin:10px 0}.action-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0}.action-label{font-weight:700;font-size:14px}.action-buttons{display:flex;gap:8px}.btn{border:0;border-radius:9px;padding:9px 12px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer}.open{background:#246cf0;color:white}.copy{background:#eaf1ff;color:#1559d6}.no-link,.empty{color:#778899}.maintenance{margin-top:14px;line-height:1.65}.notes{line-height:1.6}
+@media(max-width:800px){.site-header{display:block}.site-header nav{margin-top:12px}.filters{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.action-row{align-items:flex-start;flex-direction:column}.action-buttons{width:100%}.btn{flex:1;text-align:center}}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div>
+    <h1>🛡️ STEP総合管理ポータル</h1>
+    <p>権限4の管理者専用。利用・管理・共有用の入口をまとめて確認できます。</p>
+    <small id="version"></small>
+  </div>
+  <nav><a href="https://stepkobetsu-hub.github.io/seiseki-kanri/">スタッフ用アプリへ戻る</a></nav>
+</header>
+<main>
+  <section class="filters" aria-label="絞り込み">
+    <input id="search" type="search" placeholder="システム名・概要・担当・注意事項を検索">
+    <select id="category"><option value="">すべての分類</option></select>
+    <select id="status"><option value="">すべての状態</option></select>
+    <button id="clear" type="button">クリア</button>
+  </section>
+  <p id="count" class="count"></p>
+  <section id="grid" class="grid"></section>
+</main>
+<script>
+// STEP統合管理ポータル Ver.3.1 確実反映版
+// ボタン名・リンク・分類・状態・説明は、すべてこのファイルで管理します。
+window.STEP_PORTAL_META = {
+  "version": "3.1",
+  "updatedAt": "2026-07-21 反映確認版",
+  "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-hub/tree/main/system",
+  "dataFile": "system/data.js",
+  "rule": "カード名・分類・ボタン名・リンク・保守情報はdata.jsだけで変更する"
+};
+
+window.STEP_ASSETS = [
+  {
+    "id": "student-master",
+    "name": "生徒マスタ",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "生徒基本情報・連絡先・在籍情報などの共通マスタ",
+    "users": "管理者",
+    "github": "",
+    "publicUrl": "",
+    "storage": "Google Sheet",
+    "notes": "各システムの共通生徒マスタ候補",
+    "sourceType": "Google Sheet",
+    "sourceOfTruth": "要確認",
+    "sourceFile": "要確認",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Google Sheet ID・関連Apps Script・利用システムを特定する",
+      "changeRule": "正本確定前は修正しない"
+    },
+    "links": []
+  },
+  {
+    "id": "staff-app",
+    "name": "スタッフ用アプリ",
+    "category": "共通基盤",
+    "status": "本番",
+    "summary": "スタッフ向けの主要ページをまとめたログイン付き入口",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "GitHub Pages＋成績管理共通基盤",
+    "notes": "講師ポータル下部の「スタッフ用アプリ」から開く主要入口。各重要機能はSTEP統合管理ポータルでも独立カードとして管理",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "index.html（スタッフ用アプリ入口）",
+    "spreadsheetId": "",
+    "appsScriptType": "各リンク先システムに依存",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "講師ポータルのスタッフ用リンク、公開URL、GitHub mainのindex.htmlを照合",
+      "changeRule": "スタッフ向け主要ページを追加・変更するときはseiseki-kanri/index.htmlとSTEP統合管理ポータルを同時更新"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "スタッフ用アプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "grade-management",
+    "name": "成績管理",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "成績・通知表・指導情報を管理する中心システム",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/",
+    "storage": "Google Sheet＋Apps Script＋GitHub Pages",
+    "notes": "スタッフ用アプリから利用。エントリーシート読み取りは別の「入塾書類・受付管理」エリアで管理",
+    "sourceType": "GitHub Pages＋Google Sheet＋Apps Script",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "成績管理本体一式（直接入口ファイルは追加確認）",
+    "spreadsheetId": "成績管理データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開入口・GitHub確認済／直接入口と保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "スタッフ用アプリ、GitHub main、成績管理の直接入口、保存先Sheet・Apps Scriptを照合",
+      "changeRule": "成績管理本体、面談メモ、入塾書類読取を別カードで維持し、変更時は相互リンクを確認"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "meeting-memo",
+    "name": "面談メモ",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "面談・電話・相談内容の登録と、生徒別履歴の確認",
+    "users": "管理者・許可スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/meeting_memo.html",
+    "storage": "成績管理共通基盤＋GitHub Pages",
+    "notes": "成績管理リポジトリ内の重要な独立ページ。スタッフ用アプリからも開く",
+    "sourceType": "GitHub Pages＋成績管理共通基盤",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "meeting_memo.html",
+    "spreadsheetId": "成績管理側データ保存先を要確認",
+    "appsScriptType": "成績管理側API・保存処理を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "公開ページ・ソース確認済／保存先要確認",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "公開URLとGitHub mainのmeeting_memo.htmlを照合し、保存先API・Sheetを追加確認",
+      "changeRule": "meeting_memo.htmlを修正した場合は公開動作・保存先・スタッフ用アプリのリンクを同時確認"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "面談メモを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/meeting_memo.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "seiseki",
+    "name": "エントリーシート読み取り",
+    "category": "入塾書類・受付管理",
+    "status": "本番",
+    "summary": "OCRで読み取った入塾時情報を成績管理システムへ登録する機能",
+    "users": "管理者・スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html",
+    "storage": "Google Sheet＋Apps Script＋GitHub Pages",
+    "notes": "成績管理とは別性格の入塾書類読取機能。受付カード読み取りと同じ「入塾書類・受付管理」エリアで管理",
+    "sourceType": "GitHub＋Google Sheet",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/seiseki-kanri",
+    "sourceFile": "entry_import.html（エントリーシート読み取り）／成績管理リポジトリ内一式",
+    "spreadsheetId": "1Zq3AbL9Fx_skBUibh2F73kyWlw9Ionh3-dTOtots0D8",
+    "appsScriptType": "成績管理側構成を確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub本番ブランチと公開URLを照合",
+      "changeRule": "entry_import.htmlの公開URL・GitHub・保存先を一体管理し、成績管理カードへ統合表示しない"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "エントリーシートの読み取りアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/entry_import.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/seiseki-kanri"
+      }
+    ]
+  },
+  {
+    "id": "juku-card",
+    "name": "受付カード読み取り",
+    "category": "入塾書類・受付管理",
+    "status": "本番",
+    "summary": "受付カードの登録・一覧管理・印刷を行うシステム",
+    "users": "管理者・スタッフ",
+    "github": "",
+    "publicUrl": "",
+    "storage": "Google Sheet＋Apps Script",
+    "notes": "受付カード一覧シートへ保存。エントリーシート読み取りと同じ「入塾書類・受付管理」エリアで管理",
+    "sourceType": "Google Sheetバインド型Apps Script",
+    "sourceOfTruth": "Google Sheet: 16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
+    "sourceFile": "紐づくApps Scriptプロジェクト",
+    "spreadsheetId": "16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
+    "appsScriptType": "バインド型",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "スプレッドシートの「拡張機能→Apps Script」で確認",
+      "changeRule": "GitHub管理の有無を確認してから修正"
+    },
+    "links": []
+  },
+  {
+    "id": "past-exams",
+    "name": "過去問保管DB",
+    "category": "生徒・指導管理",
+    "status": "本番",
+    "summary": "定期テスト過去問・解答PDFの保管、検索、閲覧、提出管理",
+    "users": "管理者・スタッフ・生徒",
+    "github": "",
+    "publicUrl": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html",
+    "publicLabel": "📚 過去問DBを開く",
+    "storage": "Google Sheet＋Apps Script＋Google Drive",
+    "notes": "検索・閲覧はログイン不要",
+    "sourceType": "Apps Script＋Google Sheet＋Drive",
+    "sourceOfTruth": "Apps Script本番デプロイ",
+    "sourceFile": "Apps Scriptプロジェクト一式",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "Apps Script Webアプリ",
+    "deploymentId": "AKfycbxqxQOmtwe9lfB0Pt7dKzY3mC2sSRRVG9haDTMvOvrzyQNxhOYQLMTbnxAm9Im3LlXj",
+    "version": "129",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Version 129・本番URL・管理画面を確認",
+      "changeRule": "デプロイIDを維持。通常・提出は認証不要、?mode=adminのみ認証"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/seiseki-kanri/past_exam_db.html"
+      }
+    ]
+  },
+  {
+    "id": "step-message",
+    "name": "STEP配信システム",
+    "category": "運営・連絡管理",
+    "status": "本番",
+    "summary": "保護者・生徒へのメール配信",
+    "users": "管理者・スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/step-message-center",
+    "publicUrl": "https://stepkobetsu-hub.github.io/step-message-center/",
+    "storage": "Google Sheet＋Brevo",
+    "notes": "共通不達メール追跡を確認中",
+    "sourceType": "GitHub＋Google Sheet＋Brevo",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-message-center",
+    "sourceFile": "リポジトリ内一式",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub本番ブランチと公開URLを照合",
+      "changeRule": "Brevoキー等の秘密情報はポータルへ記載しない"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-message-center/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-message-center"
+      }
+    ]
+  },
+  {
+    "id": "delivery-failures",
+    "name": "不達メール管理",
+    "category": "運営・連絡管理",
+    "status": "本番",
+    "summary": "Brevo不達メールの確認・停止・再開・アーカイブ",
+    "users": "管理者・スタッフ",
+    "github": "https://github.com/stepkobetsu-hub/student-QR",
+    "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd",
+    "storage": "Google Sheet＋Brevo",
+    "notes": "完全削除の実データテストは未実施",
+    "sourceType": "GitHub＋Google Sheet＋Brevo",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/student-QR",
+    "sourceFile": "delivery_failures.html および関連コード",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "公開URLとstudent-QRリポジトリを照合",
+      "changeRule": "完全削除は実データテスト前に実施しない"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/student-QR"
+      }
+    ]
+  },
+  {
+    "id": "teacher-portal",
+    "name": "講師ポータル",
+    "category": "講師・勤務管理",
+    "status": "本番",
+    "summary": "講師向け各種アプリの入口",
+    "users": "講師",
+    "github": "https://github.com/stepkobetsu-hub/teacher-portal",
+    "publicUrl": "https://stepkobetsu-hub.github.io/teacher-portal/",
+    "storage": "GitHub Pages",
+    "notes": "授業報告・出退くんQR・給与明細等を集約",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/teacher-portal",
+    "sourceFile": "リポジトリ内一式",
+    "spreadsheetId": "",
+    "appsScriptType": "",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
+      "changeRule": "各リンク先システムの正本は個別台帳で確認"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "ポータルを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher-portal/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/teacher-portal"
+      }
+    ]
+  },
+  {
+    "id": "teacher-master",
+    "name": "講師マスター／給与明細",
+    "category": "講師・勤務管理",
+    "status": "本番",
+    "summary": "講師情報・権限・給与明細データ",
+    "users": "管理者・講師",
+    "github": "",
+    "publicUrl": "",
+    "storage": "Google Sheet",
+    "notes": "給与明細WebアプリのApps ScriptとURLを確認",
+    "sourceType": "Google Sheet",
+    "sourceOfTruth": "要確認",
+    "sourceFile": "給与明細Webアプリ関連Apps Script",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "講師マスターSheetと給与明細Webアプリを特定",
+      "changeRule": "正本と本番URL確定前は修正しない"
+    },
+    "links": []
+  },
+  {
+    "id": "qr-register",
+    "name": "出退くんQR作成",
+    "category": "講師・勤務管理",
+    "status": "本番",
+    "summary": "生徒・講師用QRコード作成・登録",
+    "users": "管理者",
+    "github": "https://github.com/stepkobetsu-hub/student-QR",
+    "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html",
+    "storage": "Google Sheet＋GitHub Pages",
+    "notes": "保存先Sheetは入退室ログ。Sheetの拡張機能にバインド型Apps Scriptは存在しない",
+    "sourceType": "GitHub＋Google Sheet",
+    "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
+    "sourceFile": "student_qr_register.html／入退室ログSheet",
+    "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
+    "sheetNames": [
+      "ログ",
+      "Webhook診断",
+      "不達メール管理",
+      "講師勤怠ログ",
+      "ポイント履歴"
+    ],
+    "appsScriptType": "なし（このSheetにはバインド型Apps Scriptなし）",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "入退室ログSheetを開き、保存データと拡張機能内にApps Scriptがないことを確認",
+      "changeRule": "QR作成・読取コードはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/student-QR"
+      }
+    ]
+  },
+  {
+    "id": "teacher-schedule",
+    "name": "講師予定・夏休み出勤登録",
+    "category": "講師・勤務管理",
+    "status": "本番",
+    "summary": "講師の出勤可能日登録・管理・時間割転記",
+    "users": "講師・管理者",
+    "github": "https://github.com/stepkobetsu-hub/teacher_schedule",
+    "publicUrl": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html",
+    "storage": "Supabase＋Google Sheet",
+    "notes": "類似Sheet 2件とsummer-teacherの関係を確認",
+    "sourceType": "GitHub＋Supabase＋Google Sheet",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/teacher_schedule",
+    "sourceFile": "teacher_app.html および関連コード",
+    "spreadsheetId": "要確認",
+    "appsScriptType": "要確認",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pages・Supabase・関連Sheetを照合",
+      "changeRule": "類似Sheet 2件とsummer-teacherとの関係を確認してから修正"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/teacher_schedule/teacher_app.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/teacher_schedule"
+      }
+    ]
+  },
+  {
+    "id": "billing",
+    "name": "請求管理システム",
+    "category": "経理・請求管理",
+    "status": "本番",
+    "summary": "請求作成・料金管理・兄弟割引・教材・模試・CSV出力・請求書PDF・メール送信を行うシステム",
+    "users": "管理者",
+    "github": "",
+    "publicUrl": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec",
+    "storage": "Google Sheet＋Apps Script",
+    "notes": "本番運用中",
+    "sourceType": "Google Sheetバインド型Apps Script",
+    "sourceOfTruth": "Google Sheet: 1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac",
+    "sourceFile": "紐づくApps Scriptプロジェクト",
+    "spreadsheetId": "1Xz_bNroUENVolHi-Ii7gDSXSLYmRBcNjqlvN0FiqBac",
+    "appsScriptType": "バインド型Webアプリ",
+    "deploymentId": "AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "要確認",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "本番URL・デプロイ・SheetのApps Scriptを照合",
+      "changeRule": "既存デプロイIDを不用意に変更しない"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://script.google.com/macros/s/AKfycbxzkE1tQRyB_Ca4bfPKYWIkpTukIVPMWKf2ETE7yN7qROJk0VyOlvxaJ9GGI5p-6pGb/exec"
+      }
+    ]
+  },
+  {
+    "id": "contact",
+    "name": "お問い合わせ管理",
+    "category": "入塾・営業管理",
+    "status": "本番",
+    "summary": "お問い合わせの受信、自動返信、塾への通知、Google連絡先登録、週次確認",
+    "users": "管理者",
+    "github": "https://github.com/stepkobetsu-hub/step-form",
+    "publicUrl": "https://stepkobetsu-hub.github.io/step-form/contact_form.html",
+    "storage": "Google Sheet＋Apps Script＋Gmail＋Google Contacts",
+    "notes": "Apps ScriptプロジェクトURLを台帳へ追加する",
+    "sourceType": "Google Sheetバインド型Apps Script＋GitHub Pages",
+    "sourceOfTruth": "Google Sheet: 18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA",
+    "sourceFile": "問い合わせ.gs（フォーム処理・Google Contact登録）／contact_form.html（公開フォーム）",
+    "spreadsheetId": "18VKKfPZ_AE-j-mz995Aru0KLLsWsFdoizBXH9PTYyaA",
+    "sheetNames": [
+      "お問い合わせ",
+      "反応リスト"
+    ],
+    "appsScriptType": "バインド型",
+    "githubSource": "https://github.com/stepkobetsu-hub/step-form",
+    "maintenanceEmail": "mintcocoajasmine@gmail.com",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "Sheetの拡張機能→Apps Scriptで問い合わせ.gsを確認し、フォーム送信・自動返信・Contact更新をテスト",
+      "changeRule": "同一電話番号は既存Contact名を最新版へ更新。週次確認先はmintcocoajasmine@gmail.com"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-form/contact_form.html"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-form"
+      }
+    ]
+  },
+  {
+    "id": "step-hub",
+    "name": "STEP統合管理ポータル",
+    "category": "共通基盤",
+    "status": "本番",
+    "summary": "全システム・Google Sheet・Apps Script・GitHub・公開URLの統合入口",
+    "users": "管理者",
+    "github": "https://github.com/stepkobetsu-hub/step-hub",
+    "publicUrl": "https://stepkobetsu-hub.github.io/step-hub/system/",
+    "storage": "GitHub Pages",
+    "notes": "この初版をstep-hubへ配置して再利用する想定",
+    "sourceType": "GitHub Pages",
+    "sourceOfTruth": "https://github.com/stepkobetsu-hub/step-hub",
+    "sourceFile": "system/data.js および system/配下",
+    "spreadsheetId": "",
+    "appsScriptType": "",
+    "maintenance": {
+      "owner": "STEP管理者",
+      "latestStatus": "確認済",
+      "lastVerified": "2026-07-20",
+      "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
+      "changeRule": "新システム完成時はsystem/data.jsと正本情報を同時更新"
+    },
+    "links": [
+      {
+        "group": "利用する",
+        "label": "利用者向けアプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/step-hub/system/"
+      },
+      {
+        "group": "管理する",
+        "label": "GitHubを開く",
+        "url": "https://github.com/stepkobetsu-hub/step-hub"
+      }
+    ]
+  }
+];
+
+</script>
+<script>
+(() => {
+  "use strict";
+
+  const assets = Array.isArray(window.STEP_ASSETS) ? window.STEP_ASSETS : [];
+  const meta = window.STEP_PORTAL_META || {};
+  const $ = (id) => document.getElementById(id);
+
+  const state = { query: "", category: "", status: "" };
+
+  function safe(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function validUrl(url) {
+    return /^https?:\/\//i.test(String(url || ""));
+  }
+
+  function copyUrl(url, button) {
+    navigator.clipboard.writeText(url).then(() => {
+      const old = button.textContent;
+      button.textContent = "コピー済み";
+      setTimeout(() => button.textContent = old, 1200);
+    }).catch(() => window.prompt("URLをコピーしてください", url));
+  }
+
+  function actionRow(link) {
+    if (!link || !validUrl(link.url)) return "";
+    const label = safe(link.label || "開く");
+    const url = safe(link.url);
+    return `<div class="action-row">
+      <span class="action-label">${label}</span>
+      <div class="action-buttons">
+        <a class="btn open" href="${url}" target="_blank" rel="noopener noreferrer">開く</a>
+        <button class="btn copy" type="button" data-copy="${url}">URLをコピー</button>
+      </div>
+    </div>`;
+  }
+
+  function groupLinks(asset) {
+    const groups = {};
+    (asset.links || []).forEach(link => {
+      const group = link.group || "利用する";
+      if (!groups[group]) groups[group] = [];
+      groups[group].push(link);
+    });
+    return groups;
+  }
+
+  function card(asset) {
+    const groups = groupLinks(asset);
+    const groupHtml = Object.entries(groups).map(([name, links]) => {
+      const rows = links.map(actionRow).join("");
+      return rows ? `<section class="action-group"><h3>【${safe(name)}】</h3>${rows}</section>` : "";
+    }).join("");
+
+    const m = asset.maintenance || {};
+    const notes = [
+      asset.storage ? `保存先：${asset.storage}` : "",
+      asset.sourceFile ? `ソース：${asset.sourceFile}` : "",
+      m.lastVerified ? `更新日：${m.lastVerified}` : "",
+      m.latestStatus ? `確認状況：${m.latestStatus}` : ""
+    ].filter(Boolean).join("　");
+
+    return `<article class="system-card">
+      <div class="card-head">
+        <div>
+          <h2>${safe(asset.name)}</h2>
+          <p class="meta">${safe(asset.category || "未分類")} / 利用者：${safe(asset.users || "要確認")} / 担当：${safe(m.owner || "要確認")}</p>
+        </div>
+        <span class="status ${safe(asset.status || "要確認")}">${safe(asset.status || "要確認")}</span>
+      </div>
+      <p class="summary">${safe(asset.summary || "")}</p>
+      ${groupHtml || '<p class="no-link">登録済みのリンクはありません。</p>'}
+      <p class="maintenance">${safe(notes)}</p>
+      ${asset.notes ? `<p class="notes">${safe(asset.notes)}</p>` : ""}
+    </article>`;
+  }
+
+  function filtered() {
+    const q = state.query.trim().toLowerCase();
+    return assets.filter(a => {
+      const hay = JSON.stringify(a).toLowerCase();
+      return (!q || hay.includes(q))
+        && (!state.category || a.category === state.category)
+        && (!state.status || a.status === state.status);
+    });
+  }
+
+  function render() {
+    const list = filtered();
+    $("count").textContent = `${list.length}件 / 全${assets.length}件`;
+    $("grid").innerHTML = list.map(card).join("") || '<p class="empty">該当するシステムはありません。</p>';
+    document.querySelectorAll("[data-copy]").forEach(btn => {
+      btn.addEventListener("click", () => copyUrl(btn.dataset.copy, btn));
+    });
+  }
+
+  function fillFilters() {
+    [...new Set(assets.map(a => a.category).filter(Boolean))].sort().forEach(v => {
+      $("category").insertAdjacentHTML("beforeend", `<option value="${safe(v)}">${safe(v)}</option>`);
+    });
+    [...new Set(assets.map(a => a.status).filter(Boolean))].sort().forEach(v => {
+      $("status").insertAdjacentHTML("beforeend", `<option value="${safe(v)}">${safe(v)}</option>`);
+    });
+  }
+
+  $("search").addEventListener("input", e => { state.query = e.target.value; render(); });
+  $("category").addEventListener("change", e => { state.category = e.target.value; render(); });
+  $("status").addEventListener("change", e => { state.status = e.target.value; render(); });
+  $("clear").addEventListener("click", () => {
+    state.query = state.category = state.status = "";
+    $("search").value = $("category").value = $("status").value = "";
+    render();
+  });
+
+  $("version").textContent = `Ver.${meta.version || "-"} / 更新 ${meta.updatedAt || "-"}`;
+  fillFilters();
+  render();
+})();
+
+</script>
+</body>
+</html>
