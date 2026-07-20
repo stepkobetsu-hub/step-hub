@@ -3,75 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>STEP 統合管理ポータル</title>
-  <meta name="description" content="個別指導STEPのシステム・Google Sheet・Apps Script・GitHubを一元管理">
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="style.css">
+  <meta name="robots" content="noindex,nofollow">
+  <title>STEP総合管理ポータル</title>
+  <link rel="stylesheet" href="style.css?v=20260721-v22">
 </head>
 <body>
-<header class="hero">
-  <div>
-    <p class="eyebrow">個別指導STEP</p>
-    <h1>STEP 統合管理ポータル</h1>
-    <p class="subtitle">公開システムの入口と稼働状況を一か所で確認</p>
-  </div>
-  <div class="hero-counts" id="summary"></div>
-</header>
-
-<main>
-  <section class="controls" aria-label="検索と絞り込み">
-    <label class="search">
-      <span>検索</span>
-      <input id="searchInput" type="search" placeholder="例：請求、QR、面談、1nrEh..." autocomplete="off">
-    </label>
-    <label>
-      <span>分類</span>
-      <select id="categoryFilter"><option value="">すべて</option></select>
-    </label>
-    <label>
-      <span>状態</span>
-      <select id="statusFilter"><option value="">すべて</option></select>
-    </label>
-    <button id="resetBtn" type="button">クリア</button>
-  </section>
-
-  <section class="notice">
-    このページはシステムの公開入口と稼働状況を確認するための一覧です。
-    Google SheetやApps Scriptなどの管理用リンクは安全のため掲載していません。
-  </section>
-
-  <nav class="category-nav" id="categoryNav" aria-label="大分類"></nav>
-
-  <section>
-    <div class="result-head">
-      <h2>登録システム</h2>
-      <span id="resultCount"></span>
+  <header class="site-header">
+    <div>
+      <h1>🛡️ STEP総合管理ポータル</h1>
+      <p>権限4の管理者専用。利用・管理・共有用の入口をまとめて確認できます。</p>
+      <small id="version"></small>
     </div>
-    <div id="cards" class="cards"></div>
-    <p id="empty" class="empty" hidden>該当するシステムがありません。</p>
-  </section>
-</main>
+    <nav>
+      <a href="https://stepkobetsu-hub.github.io/seiseki-kanri/">スタッフ用アプリへ戻る</a>
+    </nav>
+  </header>
 
-<template id="cardTemplate">
-  <article class="card">
-    <div class="card-top">
-      <div>
-        <p class="category"></p>
-        <h3></h3>
-      </div>
-      <span class="status"></span>
-    </div>
-    <p class="summary"></p>
-    <dl>
-      <div><dt>利用者</dt><dd class="users"></dd></div>
-      <div><dt>保存先</dt><dd class="storage"></dd></div>
-      <div><dt>注意</dt><dd class="notes"></dd></div>
-    </dl>
-    <div class="links"></div>
-  </article>
-</template>
+  <main>
+    <section class="filters" aria-label="絞り込み">
+      <input id="search" type="search" placeholder="システム名・概要・担当・注意事項を検索">
+      <select id="category"><option value="">すべての分類</option></select>
+      <select id="status"><option value="">すべての状態</option></select>
+      <button id="clear" type="button">クリア</button>
+    </section>
+    <p id="count" class="count"></p>
+    <section id="grid" class="grid"></section>
+  </main>
 
-<script src="data.js?v=20260720-past-exam-fix"></script>
-<script src="app.js"></script>
+  <script src="data.js?v=20260721-v22"></script>
+  <script src="app.js?v=20260721-v22"></script>
 </body>
 </html>
