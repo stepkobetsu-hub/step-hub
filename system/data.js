@@ -186,22 +186,39 @@ window.STEP_ASSETS = [
     "summary": "受付カードの登録・一覧管理・印刷を行うシステム",
     "users": "管理者・スタッフ",
     "github": "",
-    "publicUrl": "",
-    "storage": "Google Sheet＋Apps Script",
-    "notes": "受付カード一覧シートへ保存。エントリーシート読み取りと同じ「入塾書類・受付管理」エリアで管理",
+    "publicUrl": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit?gid=388967979#gid=388967979",
+    "storage": "受付カードGoogle Sheet＋付属Apps Script",
+    "notes": "指定Google Sheetと、そのスプレッドシートに付属する拡張機能（バインド型Apps Script）を一体管理",
     "sourceType": "Google Sheetバインド型Apps Script",
     "sourceOfTruth": "Google Sheet: 16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
-    "sourceFile": "紐づくApps Scriptプロジェクト",
+    "sourceFile": "受付カードGoogle Sheet／拡張機能→Apps Script",
     "spreadsheetId": "16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I",
-    "appsScriptType": "バインド型",
+    "appsScriptType": "バインド型（Google Sheetの拡張機能から開く）",
     "maintenance": {
       "owner": "STEP管理者",
-      "latestStatus": "要確認",
-      "lastVerified": "2026-07-20",
-      "verifyMethod": "スプレッドシートの「拡張機能→Apps Script」で確認",
-      "changeRule": "GitHub管理の有無を確認してから修正"
+      "latestStatus": "Google Sheet・付属Apps Script確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "指定Google Sheetと「拡張機能→Apps Script」を確認",
+      "changeRule": "Google Sheetと付属Apps Scriptを同じシステムとして管理し、確定情報を要確認へ戻さない"
     },
-    "links": []
+    "links": [
+      {
+        "group": "利用する",
+        "label": "受付カード読み取りを開く",
+        "url": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit?gid=388967979#gid=388967979"
+      },
+      {
+        "group": "管理する",
+        "label": "受付カードGoogle Sheetを開く",
+        "url": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit?gid=388967979#gid=388967979"
+      },
+      {
+        "group": "管理する",
+        "label": "付属Apps Scriptを開く（拡張機能）",
+        "url": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit?gid=388967979#gid=388967979"
+      }
+    ],
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/16K335J5meUGgGPFBZzRnDfFQb_Pzh8WtwmKZjWC1e9I/edit?gid=388967979#gid=388967979"
   },
   {
     "id": "past-exams",
@@ -282,31 +299,40 @@ window.STEP_ASSETS = [
     "users": "管理者・スタッフ",
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd",
-    "storage": "Google Sheet＋Brevo",
-    "notes": "完全削除の実データテストは未実施",
+    "storage": "入退室ログ２内「不達メール管理」シート＋Brevo",
+    "notes": "Google Sheetの所在は「入退室ログ２」で確定。同一ブック内の「不達メール管理」シートを使用。完全削除の実データテストは未実施",
     "sourceType": "GitHub＋Google Sheet＋Brevo",
-    "sourceOfTruth": "https://github.com/stepkobetsu-hub/student-QR",
-    "sourceFile": "delivery_failures.html および関連コード",
-    "spreadsheetId": "要確認",
-    "appsScriptType": "要確認",
+    "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A／GitHub: stepkobetsu-hub/student-QR",
+    "sourceFile": "delivery_failures.html／入退室ログ２内「不達メール管理」シート",
+    "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
+    "appsScriptType": "student-QR側の関連処理",
     "maintenance": {
       "owner": "STEP管理者",
-      "latestStatus": "要確認",
-      "lastVerified": "2026-07-20",
-      "verifyMethod": "公開URLとstudent-QRリポジトリを照合",
-      "changeRule": "完全削除は実データテスト前に実施しない"
+      "latestStatus": "保存先確認済",
+      "lastVerified": "2026-07-21",
+      "verifyMethod": "公開ページ、student-QR、入退室ログ２内の「不達メール管理」シートを照合",
+      "changeRule": "完全削除は実データテスト前に実施しない。保存先情報を要確認へ戻さない"
     },
     "links": [
       {
         "group": "利用する",
-        "label": "利用者向けアプリを開く",
+        "label": "不達メール管理を開く",
         "url": "https://stepkobetsu-hub.github.io/student-QR/delivery_failures.html?v=575679fd"
+      },
+      {
+        "group": "管理する",
+        "label": "入退室ログ２（不達メール管理）を開く",
+        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0"
       },
       {
         "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/student-QR"
       }
+    ],
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
+    "sheetNames": [
+      "不達メール管理"
     ]
   },
   {
@@ -375,27 +401,31 @@ window.STEP_ASSETS = [
     "name": "出退くんQR作成・読取",
     "category": "講師・勤務管理",
     "status": "本番",
-    "summary": "生徒・講師QRの作成、登録、タブレット読取",
+    "summary": "生徒・講師QRの作成、登録、タブレットでの入退室読取",
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html",
-    "storage": "入退室ログ（Google Sheet）",
-    "notes": "保存先Sheetは入退室ログで確定。QR作成アプリとタブレットQR読取アプリを一体管理",
+    "storage": "入退室ログ２（Google Sheet）",
+    "notes": "保存先は「入退室ログ２」で確定。同じGoogle Sheet内にログ・不達メール管理などの関連シートがある。バインド型Apps Scriptはない",
     "sourceType": "GitHub＋Google Sheet",
-    "sourceOfTruth": "入退室ログ（Google Sheet）＋ student-QR（GitHub）",
-    "sourceFile": "student_qr_register.html／tablet_checkin.html／入退室ログ",
+    "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A／GitHub: stepkobetsu-hub/student-QR",
+    "sourceFile": "student_qr_register.html／tablet_checkin.html／入退室ログ２",
     "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
-    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=1847718270#gid=1847718270",
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
     "sheetNames": [
-      "入退室ログ"
+      "ログ",
+      "Webhook診断",
+      "不達メール管理",
+      "講師勤怠ログ",
+      "ポイント履歴"
     ],
-    "appsScriptType": "なし（入退室ログSheetにバインド型Apps Scriptなし）",
+    "appsScriptType": "なし（このGoogle Sheetにはバインド型Apps Scriptなし）",
     "maintenance": {
       "owner": "STEP管理者",
       "latestStatus": "確認済",
       "lastVerified": "2026-07-21",
-      "verifyMethod": "QR作成、タブレット読取、入退室ログSheetを照合済み",
-      "changeRule": "student_qr_register.htmlとtablet_checkin.htmlはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
+      "verifyMethod": "QR作成ページ、tablet_checkin.html、入退室ログ２を照合",
+      "changeRule": "QR作成・読取コードはstudent-QRを正本とし、保存先は入退室ログ２を使用"
     },
     "links": [
       {
@@ -410,8 +440,8 @@ window.STEP_ASSETS = [
       },
       {
         "group": "管理する",
-        "label": "入退室ログ（Google Sheet）を開く",
-        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=1847718270#gid=1847718270"
+        "label": "入退室ログ２を開く",
+        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0"
       },
       {
         "group": "管理する",
@@ -420,7 +450,6 @@ window.STEP_ASSETS = [
       }
     ]
   },
-
   {
     "id": "teacher-schedule",
     "name": "講師予定・夏休み出勤登録",
