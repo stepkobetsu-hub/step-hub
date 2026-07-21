@@ -41,7 +41,7 @@
 
   function groupLinks(asset) {
     const groups = {};
-    (asset.links || []).forEach(link => {
+    (asset.links || []).filter(link => asset.id !== "qr-register" || !/^なし(?:（|$)/.test(String(asset.appsScriptType || "")) || !/Apps Script/i.test(String(link.label || ""))).forEach(link => {
       const group = link.group || "利用する";
       if (!groups[group]) groups[group] = [];
       groups[group].push(link);
@@ -58,7 +58,7 @@
 
     const m = asset.maintenance || {};
     const notes = [
-      asset.storage ? `保存先：${asset.storage}` : "",
+      asset.storage && !(asset.id === "qr-register" && [asset.sourceOfTruth, asset.spreadsheetId].some(value => value && !String(value).includes("要確認")) && String(asset.storage).includes("要確認")) ? `保存先：${asset.storage}` : "",
       asset.sourceFile ? `ソース：${asset.sourceFile}` : "",
       m.lastVerified ? `更新日：${m.lastVerified}` : "",
       m.latestStatus ? `確認状況：${m.latestStatus}` : ""
