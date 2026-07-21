@@ -372,18 +372,18 @@ window.STEP_ASSETS = [
   },
   {
     "id": "qr-register",
-    "name": "出退くんQR作成",
+    "name": "出退くんQR作成・読取",
     "category": "講師・勤務管理",
     "status": "本番",
-    "summary": "生徒・講師用QRコード作成・登録",
+    "summary": "生徒・講師用QRコードの作成・登録と、タブレットによる入退室QR読取",
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html",
     "storage": "Google Sheet＋GitHub Pages",
-    "notes": "保存先Sheetは入退室ログ。Sheetの拡張機能にバインド型Apps Scriptは存在しない",
+    "notes": "QR作成アプリとタブレットQR読取アプリを一体管理。保存先Sheetは入退室ログ。Sheetの拡張機能にバインド型Apps Scriptは存在しない",
     "sourceType": "GitHub＋Google Sheet",
     "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
-    "sourceFile": "student_qr_register.html／入退室ログSheet",
+    "sourceFile": "student_qr_register.html／tablet_checkin.html／入退室ログSheet",
     "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
     "sheetNames": [
@@ -398,14 +398,19 @@ window.STEP_ASSETS = [
       "owner": "STEP管理者",
       "latestStatus": "確認済",
       "lastVerified": "2026-07-21",
-      "verifyMethod": "入退室ログSheetを開き、保存データと拡張機能内にApps Scriptがないことを確認",
-      "changeRule": "QR作成・読取コードはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
+      "verifyMethod": "QR作成ページ、tablet_checkin.html、入退室ログSheetを照合し、タブレットでQR読取できることを確認",
+      "changeRule": "student_qr_register.htmlとtablet_checkin.htmlはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
     },
     "links": [
       {
         "group": "利用する",
-        "label": "利用者向けアプリを開く",
+        "label": "QR作成・登録アプリを開く",
         "url": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"
+      },
+      {
+        "group": "利用する",
+        "label": "タブレットQR読取アプリを開く",
+        "url": "https://stepkobetsu-hub.github.io/student-QR/tablet_checkin.html"
       },
       {
         "group": "管理する",
