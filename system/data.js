@@ -8,6 +8,7 @@ window.STEP_PORTAL_META = {
   "rule": "カード名・分類・ボタン名・リンク・保守情報はdata.jsだけで変更する"
 };
 
+
 window.STEP_ASSETS = [
   {
     "id": "student-master",
@@ -160,9 +161,9 @@ window.STEP_ASSETS = [
     "appsScriptType": "成績管理側構成を確認",
     "maintenance": {
       "owner": "STEP管理者",
-      "latestStatus": "要確認",
+      "latestStatus": "公開URL・GitHub・保存先確認済",
       "lastVerified": "2026-07-20",
-      "verifyMethod": "GitHub本番ブランチと公開URLを照合",
+      "verifyMethod": "entry_import.htmlの公開URL、GitHub、登録済みspreadsheetIdを照合",
       "changeRule": "entry_import.htmlの公開URL・GitHub・保存先を一体管理し、成績管理カードへ統合表示しない"
     },
     "links": [
@@ -353,9 +354,9 @@ window.STEP_ASSETS = [
     "appsScriptType": "",
     "maintenance": {
       "owner": "STEP管理者",
-      "latestStatus": "要確認",
+      "latestStatus": "確認済",
       "lastVerified": "2026-07-20",
-      "verifyMethod": "GitHub Pagesの公開ブランチと公開URLを照合",
+      "verifyMethod": "公開URLとGitHubリポジトリを照合",
       "changeRule": "各リンク先システムの正本は個別台帳で確認"
     },
     "links": [
