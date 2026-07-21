@@ -375,30 +375,26 @@ window.STEP_ASSETS = [
     "name": "出退くんQR作成・読取",
     "category": "講師・勤務管理",
     "status": "本番",
-    "summary": "生徒・講師用QRコードの作成・登録と、タブレットによる入退室QR読取",
+    "summary": "生徒・講師QRの作成、登録、タブレット読取",
     "users": "管理者",
     "github": "https://github.com/stepkobetsu-hub/student-QR",
     "publicUrl": "https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html",
-    "storage": "Google Sheet＋GitHub Pages",
-    "notes": "QR作成アプリとタブレットQR読取アプリを一体管理。保存先Sheetは入退室ログ。Sheetの拡張機能にバインド型Apps Scriptは存在しない",
+    "storage": "入退室ログ（Google Sheet）",
+    "notes": "保存先Sheetは入退室ログで確定。QR作成アプリとタブレットQR読取アプリを一体管理",
     "sourceType": "GitHub＋Google Sheet",
-    "sourceOfTruth": "Google Sheet: 1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
-    "sourceFile": "student_qr_register.html／tablet_checkin.html／入退室ログSheet",
+    "sourceOfTruth": "入退室ログ（Google Sheet）＋ student-QR（GitHub）",
+    "sourceFile": "student_qr_register.html／tablet_checkin.html／入退室ログ",
     "spreadsheetId": "1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A",
-    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=0#gid=0",
+    "sheetUrl": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=1847718270#gid=1847718270",
     "sheetNames": [
-      "ログ",
-      "Webhook診断",
-      "不達メール管理",
-      "講師勤怠ログ",
-      "ポイント履歴"
+      "入退室ログ"
     ],
-    "appsScriptType": "なし（このSheetにはバインド型Apps Scriptなし）",
+    "appsScriptType": "なし（入退室ログSheetにバインド型Apps Scriptなし）",
     "maintenance": {
       "owner": "STEP管理者",
       "latestStatus": "確認済",
       "lastVerified": "2026-07-21",
-      "verifyMethod": "QR作成ページ、tablet_checkin.html、入退室ログSheetを照合し、タブレットでQR読取できることを確認",
+      "verifyMethod": "QR作成、タブレット読取、入退室ログSheetを照合済み",
       "changeRule": "student_qr_register.htmlとtablet_checkin.htmlはstudent-QRリポジトリを正本とし、ログ保存先はこのSheetを使用"
     },
     "links": [
@@ -414,11 +410,17 @@ window.STEP_ASSETS = [
       },
       {
         "group": "管理する",
+        "label": "入退室ログ（Google Sheet）を開く",
+        "url": "https://docs.google.com/spreadsheets/d/1VyQ3O69PDArG2bJt_Qf347rlTwKfjqM6KPLDWqIPo6A/edit?gid=1847718270#gid=1847718270"
+      },
+      {
+        "group": "管理する",
         "label": "GitHubを開く",
         "url": "https://github.com/stepkobetsu-hub/student-QR"
       }
     ]
   },
+
   {
     "id": "teacher-schedule",
     "name": "講師予定・夏休み出勤登録",
