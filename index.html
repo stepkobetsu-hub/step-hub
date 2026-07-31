@@ -21,9 +21,9 @@
     .section-title{display:flex;align-items:end;justify-content:space-between;margin:22px 3px 11px}.section-title h2{font-size:17px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{display:flex;flex-direction:column;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;min-height:140px;box-shadow:0 7px 22px rgba(28,62,91,.07)}.card .emoji{font-size:29px}.card b{font-size:16px;margin:13px 0 5px}.card span{font-size:12px;color:var(--muted);line-height:1.5}.forest{background:linear-gradient(150deg,#eefbf6,#fff)}.grade{background:linear-gradient(150deg,#f5f0ff,#fff)}
     .group{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 7px 22px rgba(28,62,91,.07);margin-bottom:10px}.group-main{width:100%;border:0;padding:17px;display:flex;align-items:center;gap:13px;text-align:left;color:var(--text);font:inherit}.group-main.exam{background:linear-gradient(150deg,#fff8df,#fff)}.group-main.admission{background:linear-gradient(150deg,#eef4ff,#fff)}.group-main i{font-style:normal;font-size:30px}.group-main b{font-size:17px}.group-main small{display:block;color:var(--muted);margin-top:3px}.group-main .arrow{margin-left:auto;font-size:23px;transition:.2s}.group.open .arrow{transform:rotate(90deg)}
-    .group-links{display:none;padding:0 10px 10px}.group.open .group-links{display:grid;grid-template-columns:1fr 1fr;gap:9px}.links{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.mini{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;min-height:72px}.mini i{font-style:normal;font-size:22px;width:34px;text-align:center}.mini b{font-size:13px;line-height:1.35}.mini small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+    .group-links{display:none;padding:0 10px 10px}.group.open .group-links{display:grid;grid-template-columns:1fr 1fr;gap:9px}.links{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.mini{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;min-height:72px}.mini i{font-style:normal;font-size:22px;width:34px;text-align:center}.mini b{font-size:13px;line-height:1.35}.mini small{display:block;color:var(--muted);font-weight:400;margin-top:2px}.wide{grid-column:1/-1}
     .install{display:none;margin:16px 0 0;width:100%;border:0;border-radius:16px;background:#e9f0f6;color:var(--navy);font-weight:700;padding:14px;font-size:14px}.foot{text-align:center;color:#8a96a3;font-size:11px;padding:26px 5px 0;line-height:1.7}
-    @media(max-width:390px){.quick,.grid,.links,.group.open .group-links{grid-template-columns:1fr}.quick a{min-height:124px}.card{min-height:112px}.logo{width:64px;height:64px}}
+    @media(max-width:390px){.quick,.grid,.links,.group.open .group-links{grid-template-columns:1fr}.quick a{min-height:124px}.card{min-height:112px}.logo{width:64px;height:64px}.wide{grid-column:auto}}
   </style>
 </head>
 <body>
@@ -58,16 +58,16 @@
   <section class="group" id="admissionPanel">
     <button class="group-main admission" id="admissionToggle" type="button" aria-expanded="false"><i>🎓</i><span><b>愛知県入試制度</b><small>制度・入試情報・マークシート方式</small></span><span class="arrow">›</span></button>
     <div class="group-links">
-      <a class="mini" href="https://drive.google.com/file/d/1C1ouBIKm6adDgTjIe--hQRGBJ5Mx7-oX/view"><i>📘</i><b>入試制度<small>愛知県の入試制度を確認</small></b></a>
-      <a class="mini" href="https://www.zenkenmoshi.jp/exam/"><i>📰</i><b>高校入試情報<small>最新の入試情報を確認</small></b></a>
+      <a class="mini wide" href="https://www.zenkenmoshi.jp/exam/"><i>📰</i><b>高校入試情報<small>最新の入試情報を確認</small></b></a>
       <a class="mini" href="https://drive.google.com/file/d/16W1_1cm3W92AiDo5LL1vsI8OAM6zdaFB/view"><i>✏️</i><b>マークシート方式とは<small>回答方式を確認</small></b></a>
+      <a class="mini" href="https://drive.google.com/file/d/1C1ouBIKm6adDgTjIe--hQRGBJ5Mx7-oX/view"><i>📘</i><b>入試制度変更<small>愛知県の入試制度変更を確認</small></b></a>
     </div>
   </section>
 
   <nav class="links">
     <a class="mini" href="https://www.step-edu.net/%E8%A4%87%E8%A3%BD-line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><i>📅</i><b>年間カレンダー<small>年間予定を確認</small></b></a>
     <a class="mini" href="https://www.step-edu.net/services-4"><i>🌻</i><b>休み講習<small>講習案内を確認</small></b></a>
-    <a class="mini" href="https://www.zenkenmoshi.jp/past-exam/"><i>📚</i><b>入試過去問<small>公立高校入試問題</small></b></a>
+    <a class="mini wide" href="https://www.zenkenmoshi.jp/past-exam/"><i>📚</i><b>高校入試過去問<small>公立高校入試問題</small></b></a>
   </nav>
 
   <button id="installBtn" class="install" type="button">ホーム画面にアプリを追加</button>
