@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#173f68">
+  <meta name="theme-color" content="#143f67">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="STEP塾生">
@@ -12,33 +12,52 @@
   <link rel="icon" href="step-logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="step-logo.svg">
   <style>
-    :root{--navy:#173f68;--navy2:#24577f;--red:#f21920;--bg:#f3f6f9;--text:#172536;--muted:#677586;--line:#dce4ec;--white:#fff}
-    *{box-sizing:border-box} html{background:var(--bg)} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;color:var(--text);background:var(--bg)}
-    button,a{-webkit-tap-highlight-color:transparent}.app{max-width:680px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(28px + env(safe-area-inset-bottom))}
-    header{display:flex;align-items:center;gap:14px;padding:18px 4px 12px}.logo{width:68px;height:68px;border-radius:18px;background:#fff;box-shadow:0 4px 18px #173f6820;padding:7px}.head h1{font-size:22px;margin:0 0 3px}.head p{font-size:13px;color:var(--muted);margin:0}
-    .notice{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:17px;border-radius:20px;box-shadow:0 8px 22px #173f682b;margin:4px 0 16px}.notice small{opacity:.8}.notice strong{display:block;font-size:17px;margin:5px 0}.notice p{font-size:13px;line-height:1.65;margin:0;opacity:.95}
-    .qr{display:flex;align-items:center;gap:14px;background:var(--white);border:2px solid var(--red);border-radius:20px;padding:17px;text-decoration:none;color:var(--text);box-shadow:0 7px 20px #ef202018;margin-bottom:14px}.qr-icon{width:54px;height:54px;border-radius:15px;background:#fff0f0;display:grid;place-items:center;font-size:30px}.qr b{font-size:19px}.qr span{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.45}.arrow{margin-left:auto;font-size:24px;color:var(--red)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{min-height:132px;background:var(--white);border:1px solid var(--line);border-radius:19px;padding:16px;text-decoration:none;color:var(--text);box-shadow:0 4px 15px #173f6810;display:flex;flex-direction:column}.card:active,.qr:active{transform:scale(.985)}.icon{font-size:29px}.card b{font-size:16px;margin:10px 0 4px}.card span{font-size:12px;color:var(--muted);line-height:1.5}.wide{grid-column:1/-1;min-height:auto;flex-direction:row;align-items:center;gap:14px}.wide .icon{width:46px;text-align:center}.wide b{margin:0 0 3px}.soon{opacity:.62}.tag{display:inline-block;font-size:10px!important;color:#fff!important;background:#8793a0;padding:2px 7px;border-radius:99px;margin-top:6px;width:max-content}
-    .install{display:none;margin:14px 0 0;width:100%;border:0;border-radius:14px;background:#e8eef4;color:var(--navy);font-weight:700;padding:13px;font-size:14px}.foot{text-align:center;color:#8793a0;font-size:11px;padding:24px 5px 0;line-height:1.7}
-    @media(max-width:360px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.card{min-height:112px}.logo{width:60px;height:60px}.head h1{font-size:20px}}
+    :root{--navy:#143f67;--navy2:#28648f;--red:#ff3438;--cream:#fffaf1;--sky:#edf8ff;--mint:#eefbf6;--lav:#f5f0ff;--text:#172536;--muted:#6d7b8a;--white:#fff;--line:#e4eaf0}
+    *{box-sizing:border-box}html{background:#f5f8fc}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;color:var(--text);background:radial-gradient(circle at 0 0,#e8f4ff 0,transparent 34%),radial-gradient(circle at 100% 10%,#ffe9ea 0,transparent 30%),#f7f9fc}
+    a,button{-webkit-tap-highlight-color:transparent}.app{max-width:720px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(32px + env(safe-area-inset-bottom))}
+    .hero{position:relative;overflow:hidden;margin:10px 0 16px;padding:20px;border-radius:28px;background:linear-gradient(140deg,#143f67 0%,#23618e 70%,#ff3438 140%);color:#fff;box-shadow:0 18px 42px rgba(20,63,103,.22)}
+    .hero:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-55px;top:-55px;background:rgba(255,255,255,.11)}
+    .brand{display:flex;align-items:center;gap:14px}.logo{width:72px;height:72px;border-radius:22px;background:#fff;padding:7px;box-shadow:0 8px 24px rgba(0,0,0,.15)}.hero h1{font-size:23px;margin:0 0 4px}.hero p{font-size:13px;line-height:1.65;margin:0;opacity:.92}.hello{margin-top:18px;font-size:13px;opacity:.8}.hello strong{display:block;font-size:20px;opacity:1;margin-top:3px}
+    .quick{display:grid;grid-template-columns:1.12fr .88fr;gap:12px;margin-bottom:18px}.quick a{position:relative;overflow:hidden;text-decoration:none;color:var(--text);border-radius:24px;padding:18px;min-height:150px;box-shadow:0 10px 28px rgba(28,62,91,.1);transition:.15s}.quick a:active,.card:active,.mini:active{transform:scale(.98)}
+    .qr{background:linear-gradient(150deg,#fff1f1,#fff);border:1px solid #ffd2d4}.qr .bubble{background:#ff3438;color:#fff}.progress{background:linear-gradient(150deg,#eef8ff,#fff);border:1px solid #d7ecfb}.progress .bubble{background:#24618e;color:#fff}.bubble{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:27px;box-shadow:0 7px 18px rgba(0,0,0,.1)}.quick b{display:block;font-size:18px;margin-top:18px}.quick span{display:block;font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}.go{position:absolute;right:17px;top:18px;font-size:24px;color:#94a0ad}
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin:22px 3px 11px}.section-title h2{font-size:17px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{display:flex;flex-direction:column;text-decoration:none;color:var(--text);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:22px;padding:16px;min-height:140px;box-shadow:0 7px 22px rgba(28,62,91,.07);transition:.15s}.card .emoji{font-size:29px}.card b{font-size:16px;margin:13px 0 5px}.card span{font-size:12px;color:var(--muted);line-height:1.5}.card.forest{background:linear-gradient(150deg,var(--mint),#fff)}.card.grade{background:linear-gradient(150deg,var(--lav),#fff)}
+    .links{display:grid;grid-template-columns:1fr 1fr;gap:9px}.mini{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;min-height:72px;box-shadow:0 5px 16px rgba(28,62,91,.055);transition:.15s}.mini i{font-style:normal;font-size:22px;width:34px;text-align:center}.mini b{font-size:13px;line-height:1.35}.mini small{display:block;color:var(--muted);font-weight:400;margin-top:2px}
+    .note{margin-top:16px;border-radius:18px;padding:14px 15px;background:#fff9e8;border:1px solid #f5e4ae;font-size:12px;line-height:1.65;color:#675928}.install{display:none;margin:16px 0 0;width:100%;border:0;border-radius:16px;background:#e9f0f6;color:var(--navy);font-weight:700;padding:14px;font-size:14px}.foot{text-align:center;color:#8a96a3;font-size:11px;padding:26px 5px 0;line-height:1.7}
+    @media(max-width:390px){.quick{grid-template-columns:1fr}.quick a{min-height:124px}.grid,.links{grid-template-columns:1fr}.card{min-height:112px}.hero{padding:17px}.logo{width:64px;height:64px}.hero h1{font-size:21px}}
   </style>
 </head>
 <body>
 <main class="app">
-  <header><img class="logo" src="step-logo.svg" alt="STEP"><div class="head"><h1>STEP 塾生アプリ</h1><p>学習と教室からのお知らせ</p></div></header>
-  <section class="notice" aria-label="お知らせ"><small>個別指導STEP</small><strong>塾生用メニュー</strong><p>成績、学習進捗、フォレスタプラス、教室からのお知らせをここから確認できます。</p></section>
+  <section class="hero">
+    <div class="brand"><img class="logo" src="step-logo.svg" alt="STEP"><div><h1>STEP 塾生アプリ</h1><p>勉強も、お知らせも、いつもの入口をひとつに。</p></div></div>
+    <div class="hello">個別指導STEP<strong>今日も一歩ずつ進もう！</strong></div>
+  </section>
 
-  <a class="qr" href="https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html">
-    <div class="qr-icon">▦</div><div><b>自分のQRを表示</b><span>初回認証後、すぐに本人のQRを開ける画面へ整備します</span></div><div class="arrow">›</div>
-  </a>
+  <section class="quick" aria-label="よく使う機能">
+    <a class="qr" href="https://stepkobetsu-hub.github.io/student-QR/student_qr_register.html"><div class="bubble">▦</div><div class="go">›</div><b>自分のQR</b><span>塾生専用のQR表示画面へ切り替え予定</span></a>
+    <a class="progress" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><div class="bubble">✓</div><div class="go">›</div><b>学習進捗</b><span>宿題・進捗・目標範囲</span></a>
+  </section>
 
-  <nav class="grid" aria-label="塾生用メニュー">
-    <a class="card" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><div class="icon">📊</div><b>成績管理</b><span>定期テスト・通知表・志望校を確認、入力します</span></a>
-    <a class="card" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><div class="icon">📈</div><b>学習進捗管理</b><span>宿題、進捗、目標範囲を確認します</span></a>
-    <a class="card" href="https://www.step-edu.net/about-3"><div class="icon">🎥</div><b>フォレスタプラス</b><span>映像授業システムの入口を開きます</span></a>
-    <a class="card" href="https://www.step-edu.net/line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><div class="icon">📢</div><b>お知らせ</b><span>予定、講習、模試、各種リンクを確認します</span></a>
-    <div class="card wide soon"><div class="icon">✉️</div><div><b>STEPからのメッセージ</b><span>全体・個人のお知らせ機能を後日追加します</span><span class="tag">準備中</span></div></div>
+  <div class="section-title"><h2>学習メニュー</h2><span>毎日の学習はこちら</span></div>
+  <nav class="grid" aria-label="学習メニュー">
+    <a class="card grade" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><div class="emoji">📊</div><b>成績管理</b><span>定期テスト・通知表・志望校を確認します</span></a>
+    <a class="card forest" href="https://forestaplus.com/student/auth/login"><div class="emoji">🌳</div><b>フォレスタプラス</b><span>塾IDは「124」です</span></a>
   </nav>
+
+  <div class="section-title"><h2>お知らせ・資料</h2><span>必要なページを直接開きます</span></div>
+  <nav class="links" aria-label="お知らせ・資料">
+    <a class="mini" href="https://www.step-edu.net/%E8%A4%87%E8%A3%BD-line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><i>📅</i><b>年間カレンダー<small>年間予定を確認</small></b></a>
+    <a class="mini" href="https://www.step-edu.net/services-4"><i>🌻</i><b>休み講習<small>講習案内を確認</small></b></a>
+    <a class="mini" href="https://drive.google.com/file/d/1imGWgnzIdP69yqtmqLIi6IvXgslTeLaW/view?usp=sharing"><i>🗓️</i><b>全県模試 日程<small>実施日を確認</small></b></a>
+    <a class="mini" href="https://www.zenkenmoshi.jp/about/"><i>📝</i><b>全県模試 範囲<small>学年別の出題範囲</small></b></a>
+    <a class="mini" href="https://drive.google.com/file/d/1J6IQB1Nu9xbolbDAR6FrVGZleKjZ1XbT/view?usp=sharing"><i>🏫</i><b>高校コード表<small>志望校コードを確認</small></b></a>
+    <a class="mini" href="https://www.zenkenmoshi.jp/past-exam/"><i>📚</i><b>入試過去問<small>公立高校入試問題</small></b></a>
+    <a class="mini" href="https://www.step-edu.net/line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><i>🎓</i><b>愛知県入試制度<small>入試資料を確認</small></b></a>
+    <a class="mini" href="https://www.step-edu.net/line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><i>✉️</i><b>入退くんメール追加<small>申請ページへの入口</small></b></a>
+  </nav>
+
+  <div class="note">フォレスタプラスは外部サービスのため、このアプリ側からログイン画面の塾ID欄へ直接入力することはブラウザの安全制限上できません。塾ID「124」を見やすく表示しています。QR・成績管理・学習進捗は、共通ログイン化を別途実装します。</div>
   <button id="installBtn" class="install" type="button">ホーム画面にアプリを追加</button>
   <footer class="foot">個別指導STEP 神領校・大手町校<br>運営：株式会社エデュクレスト</footer>
 </main>
