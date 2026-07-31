@@ -27,7 +27,7 @@ test('common session validation and logout use the server', () => {
   assert.match(page, /action:'logout',token:session\.token/);
   assert.match(page, /clearCommonSession\(\)/);
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
-  assert.match(sw, /step-student-v7/);
+  assert.match(sw, /step-student-v8/);
   assert.match(sw, /'\.\/my_qr\.html'/);
 });
 
@@ -52,4 +52,13 @@ test('student home uses purpose-specific QR, progress, grade, and video designs'
   assert.match(page, /class="card forest"[\s\S]*?class="play"/);
   assert.match(page, /class="group-symbol"/);
   assert.match(page, /\.qr \.feature-icon\{background:linear-gradient\(145deg,var\(--blue\),var\(--navy\)\)\}/);
+});
+
+test('student home uses the warm motivational visual system without external assets', () => {
+  assert.match(page, /TODAY'S STEP/);
+  assert.match(page, /今日のメッセージ/);
+  assert.match(page, /--yellow:#ffd85a/);
+  assert.match(page, /@keyframes gentleFloat/);
+  assert.match(page, /prefers-reduced-motion:reduce/);
+  assert.doesNotMatch(page, /fonts\.(?:googleapis|gstatic)\.com|cdnjs|jsdelivr/);
 });
