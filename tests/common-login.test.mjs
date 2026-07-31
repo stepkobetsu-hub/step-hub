@@ -4,10 +4,12 @@ import fs from 'node:fs';
 
 const page = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const sw = fs.readFileSync(new URL('../sw.js', import.meta.url), 'utf8');
+const qrShell = fs.readFileSync(new URL('../my_qr.html', import.meta.url), 'utf8');
 
 test('only the three student features require the common session', () => {
   assert.equal((page.match(/class="[^"]*requires-common[^"]*"/g) || []).length, 3);
-  assert.match(page, /student-QR\/my_qr\.html/);
+  assert.match(page, /href="\.\/my_qr\.html"/);
+  assert.match(qrShell, /student-QR\/my_qr\.html/);
   assert.match(page, /seiseki-kanri\/juku_app\.html/);
   assert.match(page, /foresta-step-progress\//);
   assert.doesNotMatch(page.match(/<a class="card forest"[\s\S]*?<\/a>/)?.[0] || '', /requires-common/);
@@ -25,7 +27,13 @@ test('common session validation and logout use the server', () => {
   assert.match(page, /action:'logout',token:session\.token/);
   assert.match(page, /clearCommonSession\(\)/);
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
-  assert.match(sw, /step-student-v6/);
+  assert.match(sw, /step-student-v7/);
+  assert.match(sw, /'\.\/my_qr\.html'/);
+});
+
+test('own QR stays inside the student app scope without an extra app splash', () => {
+  assert.match(qrShell, /<iframe[^>]+student-QR\/my_qr\.html/);
+  assert.doesNotMatch(qrShell, /manifest|icon-qr|camera|カメラ/);
 });
 
 test('logged-in state shows the verified student identity without a large status label', () => {
