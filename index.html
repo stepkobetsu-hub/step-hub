@@ -3,76 +3,104 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#143f67">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="STEP塾生">
+  <meta name="theme-color" content="#35bfe8">
+  <meta name="description" content="個別指導STEPの塾生用アプリ">
   <title>STEP 塾生アプリ</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="step-logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="step-logo.svg">
   <style>
-    :root{--navy:#143f67;--red:#ff3438;--text:#172536;--muted:#6d7b8a;--line:#e4eaf0}
-    *{box-sizing:border-box}html{background:#f5f8fc}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Yu Gothic",sans-serif;color:var(--text);background:radial-gradient(circle at 0 0,#e8f4ff 0,transparent 34%),radial-gradient(circle at 100% 10%,#ffe9ea 0,transparent 30%),#f7f9fc}
-    a,button{-webkit-tap-highlight-color:transparent}.app{max-width:720px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(32px + env(safe-area-inset-bottom))}
-    .hero{margin:10px 0 16px;padding:20px;border-radius:28px;background:linear-gradient(140deg,#143f67,#23618e 70%,#ff3438 140%);color:#fff;box-shadow:0 18px 42px rgba(20,63,103,.22)}
-    .brand{display:flex;align-items:center;gap:14px}.logo{width:72px;height:72px;border-radius:22px;background:#fff;padding:7px}.hero h1{font-size:23px;margin:0 0 4px}.hero p{font-size:13px;line-height:1.65;margin:0}.hello{margin-top:18px;font-size:13px;opacity:.8}.hello strong{display:block;font-size:20px;opacity:1;margin-top:3px}
-    .quick{display:grid;grid-template-columns:1.12fr .88fr;gap:12px;margin-bottom:18px}.quick a{position:relative;text-decoration:none;color:var(--text);border-radius:24px;padding:18px;min-height:150px;box-shadow:0 10px 28px rgba(28,62,91,.1)}.quick a:active,.card:active,.mini:active,.group-main:active{transform:scale(.98)}
-    .qr{background:linear-gradient(150deg,#fff1f1,#fff);border:1px solid #ffd2d4}.progress{background:linear-gradient(150deg,#eef8ff,#fff);border:1px solid #d7ecfb}.bubble{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:27px;background:#24618e;color:#fff}.qr .bubble{background:#ff3438}.quick b{display:block;font-size:18px;margin-top:18px}.quick span{display:block;font-size:12px;color:var(--muted);line-height:1.5;margin-top:5px}.go{position:absolute;right:17px;top:18px;font-size:24px;color:#94a0ad}
-    .section-title{display:flex;align-items:end;justify-content:space-between;margin:22px 3px 11px}.section-title h2{font-size:17px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{display:flex;flex-direction:column;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;min-height:140px;box-shadow:0 7px 22px rgba(28,62,91,.07)}.card .emoji{font-size:29px}.card b{font-size:16px;margin:13px 0 5px}.card span{font-size:12px;color:var(--muted);line-height:1.5}.forest{background:linear-gradient(150deg,#eefbf6,#fff)}.grade{background:linear-gradient(150deg,#f5f0ff,#fff)}
-    .group{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 7px 22px rgba(28,62,91,.07);margin-bottom:10px}.group-main{width:100%;border:0;padding:17px;display:flex;align-items:center;gap:13px;text-align:left;color:var(--text);font:inherit}.group-main.exam{background:linear-gradient(150deg,#fff8df,#fff)}.group-main.admission{background:linear-gradient(150deg,#eef4ff,#fff)}.group-main i{font-style:normal;font-size:30px}.group-main b{font-size:17px}.group-main small{display:block;color:var(--muted);margin-top:3px}.group-main .arrow{margin-left:auto;font-size:23px;transition:.2s}.group.open .arrow{transform:rotate(90deg)}
-    .group-links{display:none;padding:0 10px 10px}.group.open .group-links{display:grid;grid-template-columns:1fr 1fr;gap:9px}.links{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.mini{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;min-height:72px}.mini i{font-style:normal;font-size:22px;width:34px;text-align:center}.mini b{font-size:13px;line-height:1.35}.mini small{display:block;color:var(--muted);font-weight:400;margin-top:2px}.wide{grid-column:1/-1}
-    .install{display:none;margin:16px 0 0;width:100%;border:0;border-radius:16px;background:#e9f0f6;color:var(--navy);font-weight:700;padding:14px;font-size:14px}.foot{text-align:center;color:#8a96a3;font-size:11px;padding:26px 5px 0;line-height:1.7}
-    .common-login{margin:0 0 16px;padding:16px;border:1px solid #d7e4ef;border-radius:22px;background:#fff;box-shadow:0 8px 24px rgba(28,62,91,.08)}.common-login h2{margin:0;font-size:17px}.common-login p{margin:5px 0 12px;color:var(--muted);font-size:12px;line-height:1.5}.common-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:8px}.common-fields input{min-width:0;height:44px;padding:0 11px;border:1px solid #ccd8e3;border-radius:12px;font:inherit}.common-fields button,.common-logout{min-height:44px;padding:0 15px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800}.common-status{display:flex;align-items:center;justify-content:space-between;gap:14px}.student-identity{min-width:0}.student-name{color:var(--navy);font-size:17px;font-weight:900;line-height:1.35}.student-meta{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:5px;color:var(--muted);font-size:12px}.student-meta span{overflow-wrap:anywhere}.common-message{min-height:18px;margin-top:8px;color:#b52c35;font-size:12px}.common-logout{flex:0 0 auto;background:#e9f0f6;color:var(--navy)}.hidden{display:none!important}
-    @media(max-width:390px){.quick,.grid,.links,.group.open .group-links{grid-template-columns:1fr}.quick a{min-height:124px}.card{min-height:112px}.logo{width:64px;height:64px}.wide{grid-column:auto}}
+    :root{
+      --blue:#157fe9;--blue-deep:#075ebc;--sky:#63d8f3;--green:#22b978;
+      --orange:#ff971d;--purple:#694ddd;--red:#ee4650;--ink:#18314f;
+      --muted:#61748a;--paper:#fff;--line:#dce9f3;--shadow:0 10px 28px rgba(33,91,130,.14)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:#eaf8ff}
+    body{margin:0;color:var(--ink);font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;background:linear-gradient(#e6f8ff 0,#f8fcff 58%,#eefbee 100%);overflow-x:hidden}
+    button,input{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    a{color:inherit}
+    .hidden{display:none!important}
+    .app{position:relative;max-width:720px;min-height:100vh;margin:0 auto;padding:0 14px calc(112px + env(safe-area-inset-bottom));overflow:hidden}
+    .sky{position:relative;margin:0 -14px 20px;padding:22px 18px 30px;overflow:hidden;background:linear-gradient(180deg,#55cfee 0%,#a9edee 69%,#bdebb7 70%,#8bd99c 100%);border-radius:0 0 36px 36px}
+    .sky:before,.sky:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:32px 9px 0 -5px rgba(255,255,255,.92),58px 2px 0 -12px rgba(255,255,255,.92)}
+    .sky:before{width:60px;height:24px;left:-10px;top:68px}
+    .sky:after{width:66px;height:26px;right:-20px;top:126px;transform:scale(.82)}
+    .hill{position:absolute;z-index:0;bottom:-38px;width:72%;height:105px;border-radius:50% 50% 0 0}
+    .hill-one{left:-20%;background:#a9e9bc;transform:rotate(4deg)}
+    .hill-two{right:-21%;bottom:-48px;background:#66cc92;transform:rotate(-5deg)}
+    .sun{position:absolute;z-index:0;left:24px;bottom:32px;width:54px;height:54px;border-radius:50%;background:#ffd857;box-shadow:0 0 0 10px rgba(255,216,87,.15)}
+    .sun:before,.sun:after{content:"";position:absolute;left:17px;top:23px;width:5px;height:5px;border-radius:50%;background:#8a5a24;box-shadow:17px 0 #8a5a24}
+    .sun:after{left:21px;top:34px;width:15px;height:7px;border:0;border-bottom:3px solid #8a5a24;border-radius:0 0 12px 12px;background:transparent;box-shadow:none}
+    .birds{position:absolute;z-index:0;top:30px;left:15%;color:#fff;font-size:23px;letter-spacing:28px;opacity:.9;transform:rotate(-5deg)}
+    .hero-head{position:relative;z-index:2;min-height:52px;padding-right:126px}
+    .greeting{margin:28px 0 4px;font-size:clamp(22px,6vw,32px);font-weight:900;line-height:1.25;letter-spacing:.02em;text-shadow:0 2px 0 rgba(255,255,255,.82)}
+    .encourage{margin:0;font-size:15px;font-weight:700;letter-spacing:.04em}
+    .top-action{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:56px;height:56px;padding:0;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(255,255,255,.94);color:#0b4a91;text-decoration:none;box-shadow:0 6px 16px rgba(20,86,126,.13);font-size:9px;font-weight:800;cursor:pointer}
+    .top-action svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .notice-action{right:64px}.common-logout{right:0}
+    .login-card,.identity-card{position:relative;z-index:3;margin-top:20px;border:1px solid rgba(255,255,255,.9);border-radius:27px;background:rgba(255,255,255,.95);box-shadow:var(--shadow)}
+    .login-card{padding:18px}
+    .login-card h2{margin:0 0 5px;color:#0d579c;font-size:18px}.login-card p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.6}
+    .common-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:8px}.common-fields input{min-width:0;height:46px;padding:0 12px;border:1px solid #cbddea;border-radius:14px;background:#f9fcff;color:var(--ink)}
+    .common-fields input:focus{outline:3px solid rgba(21,127,233,.16);border-color:var(--blue)}
+    .common-fields button{min-height:46px;padding:0 18px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;font-weight:900;box-shadow:0 6px 13px rgba(11,102,193,.22);cursor:pointer}
+    .common-fields button:disabled{opacity:.65}.common-message{min-height:18px;margin-top:8px;color:#b82d38;font-size:12px}
+    .logged-in-home{display:contents}
+    .identity-card{display:grid;grid-template-columns:repeat(3,1fr);padding:16px 10px}
+    .identity-item{display:grid;grid-template-columns:38px 1fr;gap:8px;align-items:center;padding:0 12px;min-width:0}
+    .identity-item+.identity-item{border-left:2px dashed #d5e3ed}
+    .identity-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;color:#fff;background:linear-gradient(145deg,#62bafa,#257ee0)}
+    .identity-item:nth-child(2) .identity-icon{background:linear-gradient(145deg,#ee88bb,#ce3b86)}.identity-item:nth-child(3) .identity-icon{background:linear-gradient(145deg,#9a78e9,#5946c5)}
+    .identity-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .identity-label{display:block;color:var(--muted);font-size:10px}.identity-value{display:block;overflow:hidden;margin-top:1px;color:#152a44;font-size:14px;font-weight:900;white-space:nowrap;text-overflow:ellipsis}
+    .qr-card{position:relative;display:grid;grid-template-columns:110px 1fr 78px;align-items:center;gap:13px;min-height:188px;margin-bottom:16px;padding:22px 18px;overflow:hidden;border:3px solid #fff;border-radius:31px;background:linear-gradient(135deg,#278af4 0%,#0874e6 55%,#13a5ee 100%);color:#fff;text-decoration:none;box-shadow:0 14px 30px rgba(5,107,204,.27)}
+    .qr-card:before{content:"";position:absolute;inset:auto -38px -72px auto;width:190px;height:190px;border-radius:50%;background:rgba(255,255,255,.1)}
+    .qr-medallion{z-index:1;display:grid;place-items:center;aspect-ratio:1;border:9px solid rgba(255,255,255,.38);border-radius:50%;background:#fff;box-shadow:0 8px 20px rgba(5,76,147,.22)}
+    .qr-medallion svg{width:72%;height:72%;fill:none;stroke:#1268cd;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .qr-copy{z-index:1}.qr-copy b{display:block;font-size:clamp(27px,8vw,39px);line-height:1.1}.qr-copy span{display:block;margin-top:11px;font-size:13px;font-weight:700;line-height:1.6}
+    .sparkle{color:#ffe05a}.qr-go{position:absolute;right:15px;top:50%;z-index:3;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.24);font-size:31px;font-weight:400;transform:translateY(-50%)}
+    .mascot{z-index:2;align-self:end;width:82px;margin:0 0 -28px -12px;filter:drop-shadow(0 7px 8px rgba(0,75,145,.18))}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+    .feature-card{position:relative;display:flex;min-width:0;min-height:196px;padding:15px 10px 16px;flex-direction:column;align-items:center;overflow:hidden;border:2px solid #fff;border-radius:27px;text-align:center;text-decoration:none;box-shadow:var(--shadow)}
+    .feature-card:after{content:"";position:absolute;inset:auto -25px -42px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.58)}
+    .feature-card.progress{background:linear-gradient(155deg,#fff 22%,#ebfff1)}.feature-card.grade{background:linear-gradient(155deg,#fff 22%,#fff6df)}.feature-card.forest{background:linear-gradient(155deg,#fff 22%,#f2edff)}
+    .round-icon{z-index:1;display:grid;place-items:center;width:72px;height:72px;border-radius:50%;color:#fff;box-shadow:0 8px 17px rgba(35,82,110,.2)}
+    .progress .round-icon{background:linear-gradient(145deg,#77d894,#13ad70)}.grade .round-icon{background:linear-gradient(145deg,#ffd260,#f88b18)}.forest .round-icon{background:linear-gradient(145deg,#9b89f4,#5f45d6)}
+    .round-icon svg{width:44px;height:44px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.round-icon .play{fill:#fff;stroke:none}
+    .feature-card b{z-index:1;margin-top:14px;font-size:clamp(14px,4vw,20px);line-height:1.2}.progress b{color:#148451}.grade b{color:#dc691b}.forest b{color:#5237c6}
+    .feature-card span{z-index:1;margin-top:7px;color:#53677b;font-size:10px;line-height:1.45}.card-arrow{position:absolute;right:8px;bottom:9px;z-index:2;display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:currentColor;color:#fff;font-size:20px}.progress .card-arrow{background:#23b77b}.grade .card-arrow{background:#ffa21a}.forest .card-arrow{background:#6547de}
+    .section-heading{display:flex;align-items:center;justify-content:space-between;margin:22px 4px 10px}.section-heading h2{margin:0;font-size:18px}.section-heading span{color:var(--muted);font-size:10px;font-weight:700}
+    .notice-banner{display:flex;align-items:center;gap:11px;min-height:70px;margin:0 0 18px;padding:12px 16px;border:1px solid #ffd873;border-radius:22px;background:linear-gradient(100deg,#fff9df,#fff);color:#d96815;text-decoration:none;box-shadow:0 8px 22px rgba(151,104,28,.1)}
+    .notice-banner svg{flex:0 0 auto;width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.notice-banner b{font-size:16px}.notice-banner span{margin-left:auto;color:#4f6073;font-size:12px}.notice-banner strong{font-size:26px}
+    .resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .resource-tile{display:flex;min-width:0;min-height:125px;padding:13px 8px 11px;flex-direction:column;align-items:center;justify-content:center;border:1px solid #e4edf4;border-radius:24px;background:#fff;color:var(--ink);box-shadow:0 8px 22px rgba(28,77,111,.1);cursor:pointer}
+    .resource-tile svg{width:48px;height:48px;margin-bottom:9px;fill:none;stroke:#3a7fd1;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.resource-tile:nth-child(1) svg{stroke:#6248d4}.resource-tile:nth-child(2) svg{stroke:#ef7c34}
+    .resource-tile b{font-size:12px;line-height:1.35}.resource-tile small{margin-top:3px;color:var(--muted);font-size:9px}.resource-tile[aria-expanded="true"]{outline:3px solid rgba(21,127,233,.14);border-color:#91c8ee}
+    .resource-panel{display:none;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0 14px;padding:10px;border:1px solid #dce8f1;border-radius:20px;background:rgba(255,255,255,.84)}.resource-panel.open{display:grid}
+    .mini{display:flex;align-items:center;gap:9px;min-height:62px;padding:10px;border:1px solid #e1eaf1;border-radius:15px;background:#fff;text-decoration:none}.mini i{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#eef7fd;font-style:normal}.mini b{font-size:12px}.mini small{display:block;margin-top:3px;color:var(--muted);font-size:9px;font-weight:500}.mini.wide{grid-column:1/-1}
+    .install{display:none;width:100%;margin:16px 0 0;padding:14px;border:0;border-radius:16px;background:#dcefff;color:#0b579b;font-weight:900}.foot{padding:25px 4px 6px;color:#718296;text-align:center;font-size:10px;line-height:1.7}
+    .bottom-nav{position:fixed;z-index:30;left:50%;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);width:min(720px,100%);padding:10px 8px calc(9px + env(safe-area-inset-bottom));border:2px solid rgba(255,255,255,.9);border-radius:28px 28px 0 0;background:linear-gradient(135deg,#0d79e7,#075dbd);box-shadow:0 -8px 24px rgba(14,78,139,.19);transform:translateX(-50%)}
+    .bottom-nav a{display:flex;min-width:0;min-height:55px;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;text-decoration:none;font-size:9px;font-weight:800;white-space:nowrap}.bottom-nav svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.bottom-nav .play{fill:currentColor;stroke:none}
+    .qr-card:active,.feature-card:active,.resource-tile:active,.notice-banner:active,.bottom-nav a:active{transform:scale(.98)}
     @media(max-width:560px){.common-fields{grid-template-columns:1fr}.common-fields button{width:100%}}
-  </style>
-  <style>
-    :root{--navy:#103f70;--blue:#1774ae;--sky:#eaf5fc;--red:#e7353d;--text:#15283a;--muted:#63778a;--line:#dbe6ef}
-    body{background:linear-gradient(180deg,#edf6fc 0,#f8fafc 280px,#f4f7fa 100%)}
-    .app{max-width:680px;padding-left:12px;padding-right:12px}.hero{position:relative;overflow:hidden;margin-top:8px;padding:22px;border-radius:26px;background:linear-gradient(128deg,#0f3b68 0,#176b9f 76%,#e7353d 160%)}.hero:after{content:"";position:absolute;width:150px;height:150px;right:-55px;top:-70px;border:30px solid rgba(255,255,255,.09);border-radius:50%}.logo{width:66px;height:66px;border-radius:18px}.hero h1{font-size:22px;letter-spacing:.02em}.hello strong{font-size:19px}
-    .common-login{border:1px solid #cfe0ec;border-radius:20px;box-shadow:0 8px 22px rgba(16,63,112,.08)}.common-login h2{color:var(--navy)}.common-fields button{background:linear-gradient(135deg,var(--navy),var(--blue))}
-    .quick{grid-template-columns:1.08fr .92fr;gap:10px}.quick a,.card{border-radius:20px;box-shadow:0 8px 22px rgba(16,63,112,.08);transition:transform .15s,box-shadow .15s}.quick a{min-height:156px;padding:17px}.qr{background:linear-gradient(145deg,#fff 20%,#e9f6fd);border:2px solid #c9e4f3}.progress{background:linear-gradient(145deg,#fff 20%,#e9f6fd);border:2px solid #c9e4f3}.feature-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:16px;color:#fff;box-shadow:0 7px 16px rgba(16,63,112,.16)}.feature-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.qr .feature-icon{background:linear-gradient(145deg,var(--blue),var(--navy))}.progress .feature-icon{background:linear-gradient(145deg,var(--blue),var(--navy))}.quick b{color:var(--navy);font-size:18px}.go{color:var(--red);font-weight:900}
-    .section-title{margin-top:24px}.section-title h2{color:var(--navy);font-size:18px}.section-title h2:after{content:"";display:block;width:30px;height:3px;margin-top:5px;border-radius:2px;background:var(--red)}
-    .card{min-height:145px;padding:16px;border-width:2px}.card-icon{width:51px;height:51px;display:grid;place-items:center;border-radius:15px;color:#fff}.card-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.grade{background:linear-gradient(145deg,#fff 25%,#eef3ff);border-color:#d6def4}.grade .card-icon{background:linear-gradient(145deg,#506fc0,#314d9d)}.forest{background:linear-gradient(145deg,#fff 25%,#eef7ff);border-color:#cee4f3}.forest .card-icon{background:linear-gradient(145deg,#1c82bd,#105482)}.forest .card-icon .play{fill:#fff;stroke:none}.card b{color:var(--navy)}
-    .group{border-radius:19px;border-color:#d5e3ed}.group-main{min-height:82px;background:#fff!important;border-left:5px solid var(--blue);padding:15px}.group-main.admission{border-left-color:var(--red)}.group-symbol{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--sky);color:var(--navy)}.group-symbol svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2}.group-main.admission .group-symbol{background:#fff0f1;color:#b92631}.arrow{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#eef4f8;color:var(--navy)}.group.open .arrow{background:var(--navy);color:#fff}.group-links{border-top:1px solid var(--line);background:#f8fafc;padding-top:10px}.mini{border-radius:15px;box-shadow:none}.mini i{font-size:20px}
-    .install{background:#e5f0f7}.foot{color:#758797}
-    @media(max-width:390px){.quick{grid-template-columns:1fr 1fr}.quick a{min-height:148px;padding:15px}.quick b{font-size:16px}.quick span{font-size:11px}.grid{grid-template-columns:1fr 1fr}.card{min-height:137px}.logo{width:58px;height:58px}.hero{padding:18px}.hero h1{font-size:20px}.group.open .group-links,.links{grid-template-columns:1fr}.wide{grid-column:auto}}
-    @media(max-width:350px){.quick,.grid{grid-template-columns:1fr}}
-  </style>
-  <style>
-    :root{--navy:#123a68;--blue:#1679b8;--sky:#e8f6ff;--red:#ef4650;--coral:#ff726d;--yellow:#ffd85a;--mint:#55cdb4;--cream:#fffaf0;--text:#18304a;--muted:#64778b;--line:#dce8f1}
-    html{background:#f5f8fb}body{min-height:100vh;background:radial-gradient(circle at 8% 2%,rgba(255,216,90,.28) 0 90px,transparent 91px),radial-gradient(circle at 96% 12%,rgba(79,198,222,.2) 0 120px,transparent 121px),linear-gradient(180deg,#edf8ff 0,#fffaf2 42%,#f5f8fb 100%);background-attachment:fixed}
-    .app{max-width:680px;padding:env(safe-area-inset-top) 12px calc(38px + env(safe-area-inset-bottom))}
-    .hero{isolation:isolate;position:relative;margin:10px 0 14px;padding:19px 20px 18px;border:0;border-radius:30px;background:linear-gradient(135deg,#0d427a 0%,#126fa8 57%,#36a7c4 100%);box-shadow:0 18px 38px rgba(15,67,116,.24);animation:homeRise .42s ease both}
-    .hero:before{content:"";position:absolute;z-index:-1;right:-25px;bottom:-45px;width:145px;height:145px;border-radius:50%;background:rgba(255,216,90,.19);box-shadow:-155px -125px 0 -51px rgba(255,255,255,.1)}
-    .hero:after{content:"✦";z-index:-1;right:23px;top:18px;width:auto;height:auto;border:0;color:var(--yellow);font-size:21px;text-shadow:-31px 19px 0 rgba(255,255,255,.48),10px 39px 0 rgba(255,255,255,.3);animation:starGlow 2.8s ease-in-out infinite}
-    .hero-badges{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}.hero-kicker,.daily-badge{display:inline-flex;align-items:center;min-height:25px;padding:4px 9px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}.hero-kicker{background:var(--yellow);color:#614b00}.daily-badge{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.12);color:#eefaff;letter-spacing:0}
-    .brand{position:relative;gap:12px;padding-right:76px}.logo{width:54px;height:54px;padding:6px;border-radius:17px;box-shadow:0 7px 18px rgba(4,35,72,.2)}.hero-copy{min-width:0}.hero h1{margin:0 0 4px;font-size:23px;letter-spacing:.02em}.hero p{color:#dff4ff;font-size:12px;line-height:1.55}.hero-visual{position:absolute;right:0;top:-3px;display:grid;place-items:center;width:68px;height:68px;border:1px solid rgba(255,255,255,.23);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.24);animation:gentleFloat 3.6s ease-in-out infinite}.hero-visual svg{width:47px;height:47px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.hero-visual .accent{fill:var(--yellow);stroke:#f5bd2c}
-    .hello{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px 12px;align-items:center;margin-top:16px;padding:10px 12px;border:1px solid rgba(255,255,255,.16);border-radius:15px;background:linear-gradient(90deg,rgba(3,37,79,.23),rgba(255,255,255,.09));font-size:10px;font-weight:800;opacity:1}.hello span{display:inline-flex;padding:4px 8px;border-radius:999px;background:rgba(255,216,90,.18);color:#ffe98c}.hello strong{margin:0;font-size:15px;line-height:1.35}
-    .common-login{position:relative;overflow:hidden;margin-bottom:14px;padding:16px 17px;border:1px solid #d9e7ef;border-radius:23px;background:rgba(255,255,255,.92);box-shadow:0 9px 24px rgba(24,70,108,.08);animation:homeRise .48s .04s ease both}.common-login:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--yellow),#ffb94e)}.common-login h2{font-size:16px}.common-login h2:before{content:"🔑";margin-right:7px;font-size:16px}.common-login p{margin:5px 0 12px}.common-fields{gap:9px}.common-fields input{height:46px;border-color:#cedde8;border-radius:13px;background:#fbfdff}.common-fields input:focus{outline:3px solid rgba(22,121,184,.15);border-color:var(--blue)}.common-fields button{border-radius:13px;background:linear-gradient(135deg,#0f568d,var(--blue));box-shadow:0 6px 14px rgba(22,121,184,.2)}.common-status{min-height:48px}.student-name{font-size:17px}.student-meta span{display:inline-flex;padding:3px 8px;border-radius:999px;background:#eef6fb;color:#526b81}.common-logout{border:1px solid #d9e5ed;background:#f4f8fb}
-    .quick{gap:11px;margin-bottom:21px}.quick a,.card,.group,.mini{border:0;box-shadow:0 9px 22px rgba(28,65,98,.09)}.quick a{overflow:hidden;min-height:158px;padding:16px;border-radius:24px;transition:transform .18s ease,box-shadow .18s ease}.quick a:before{content:"";position:absolute;right:-30px;bottom:-35px;width:105px;height:105px;border-radius:50%;background:rgba(255,255,255,.54)}.quick a:hover,.card:hover,.mini:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(28,65,98,.13)}.qr{background:linear-gradient(145deg,#fff 20%,#ddf3ff);box-shadow:inset 0 0 0 1px #c9e8f8,0 9px 22px rgba(28,65,98,.09)!important}.progress{background:linear-gradient(145deg,#fff 16%,#def9ef);box-shadow:inset 0 0 0 1px #c8eddf,0 9px 22px rgba(28,65,98,.09)!important}.feature-icon{width:57px;height:57px;border-radius:19px;box-shadow:0 8px 17px rgba(16,64,105,.19);transition:transform .18s ease}.quick a:hover .feature-icon{transform:rotate(-3deg) scale(1.04)}.qr .feature-icon{background:linear-gradient(145deg,#238dcc,#105085)}.progress .feature-icon{background:linear-gradient(145deg,#5fd3b8,#21877c)}.quick b{position:relative;margin-top:17px;font-size:17px}.quick span{position:relative;max-width:145px}.go{z-index:2;right:14px;top:15px;display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.83);color:var(--navy);font-size:23px;box-shadow:0 4px 10px rgba(23,61,94,.1)}
-    .section-title{align-items:center;margin:24px 4px 11px}.section-title h2{display:flex;align-items:center;gap:8px;font-size:17px}.section-title h2:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 5px rgba(239,70,80,.1)}.section-title h2:after{display:none}.section-title span{padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.75);font-weight:700}
-    .grid{gap:11px}.card{position:relative;overflow:hidden;min-height:147px;padding:16px;border-radius:23px;transition:transform .18s ease,box-shadow .18s ease}.card:after{content:"";position:absolute;right:-25px;bottom:-40px;width:95px;height:95px;border-radius:50%;background:rgba(255,255,255,.58)}.card-icon{z-index:1;width:53px;height:53px;border-radius:18px}.grade{background:linear-gradient(145deg,#fff,#f0edff)}.grade .card-icon{background:linear-gradient(145deg,#7767d8,#4d46a7)}.forest{background:linear-gradient(145deg,#fff,#fff1d9)}.forest .card-icon{background:linear-gradient(145deg,#ff9b3f,#e7673b)}.card b,.card span{position:relative;z-index:1}.card b{font-size:16px}.card span{max-width:190px}
-    .group{border-radius:22px;background:rgba(255,255,255,.93);box-shadow:0 8px 20px rgba(28,65,98,.07);transition:box-shadow .18s ease}.group.open{box-shadow:0 13px 30px rgba(28,65,98,.11)}.group-main{min-height:82px;border-left:0;padding:15px 16px;background:linear-gradient(100deg,#fff,#f4fbff)!important}.group-main:before{content:"";align-self:stretch;width:5px;border-radius:999px;background:var(--blue)}.group-main.admission:before{background:var(--red)}.group-symbol{width:44px;height:44px;border-radius:15px;background:#e6f5ff;color:#155d91}.group-main.admission .group-symbol{background:#fff0ee;color:#c53b44}.arrow{width:32px;height:32px;background:#eef5f9}.group.open .arrow{background:var(--navy);transform:rotate(90deg)}.group-links{border-top:1px dashed #d9e6ee;background:#fbfdff}.mini{min-height:74px;border:1px solid #e2ebf2;border-radius:17px;background:rgba(255,255,255,.94);transition:transform .18s ease,box-shadow .18s ease}.mini i{display:grid;place-items:center;height:39px;border-radius:12px;background:#f0f6fa;font-size:20px}.mini b{color:#27445e}
-    .install{border:1px solid #d4e3ed;border-radius:17px;background:rgba(255,255,255,.8);box-shadow:0 7px 18px rgba(28,65,98,.06)}.foot{color:#76899a;padding-top:30px}
-    @keyframes homeRise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}@keyframes gentleFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(2deg)}}@keyframes starGlow{0%,100%{opacity:.72;transform:scale(.95)}50%{opacity:1;transform:scale(1.08)}}
-    @media(max-width:560px){.common-fields{grid-template-columns:1fr}.common-status{align-items:flex-start}.common-logout{min-height:40px}}
-    @media(max-width:390px){.app{padding-left:10px;padding-right:10px}.hero{padding:17px;border-radius:26px}.hero-badges{margin-bottom:11px}.daily-badge{font-size:9px}.brand{padding-right:66px}.logo{width:50px;height:50px}.hero h1{font-size:20px}.hero-visual{width:60px;height:60px;border-radius:19px}.hero-visual svg{width:41px;height:41px}.hello{grid-template-columns:1fr;gap:5px;padding:9px 10px}.hello span{justify-self:start}.hello strong{font-size:14px}.quick{grid-template-columns:1fr 1fr}.quick a{min-height:154px;padding:14px}.quick b{font-size:16px}.quick span{font-size:10px}.feature-icon{width:52px;height:52px}.grid{grid-template-columns:1fr 1fr}.card{min-height:141px;padding:14px}.card-icon{width:49px;height:49px}.card b{font-size:15px}.card span{font-size:10px}.group.open .group-links,.links{grid-template-columns:1fr}.wide{grid-column:auto}}
-    @media(max-width:350px){.quick,.grid{grid-template-columns:1fr}.quick a,.card{min-height:125px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    @media(max-width:420px){.app{padding-left:10px;padding-right:10px}.sky{margin-left:-10px;margin-right:-10px;padding-left:14px;padding-right:14px}.greeting{margin-top:34px}.identity-card{padding:13px 5px}.identity-item{grid-template-columns:30px 1fr;gap:5px;padding:0 7px}.identity-icon{width:30px;height:30px;border-radius:9px}.identity-icon svg{width:19px;height:19px}.identity-value{font-size:12px}.qr-card{grid-template-columns:91px 1fr 53px;gap:10px;min-height:164px;padding:18px 13px}.qr-copy b{font-size:28px}.qr-copy span{font-size:11px}.mascot{width:69px;margin-left:-17px}.feature-card{min-height:183px;padding-left:7px;padding-right:7px}.round-icon{width:65px;height:65px}.round-icon svg{width:39px;height:39px}.resource-tile{min-height:116px}.bottom-nav{padding-left:3px;padding-right:3px}.bottom-nav a{font-size:8px}}
+    @media(max-width:374px){.qr-card{grid-template-columns:82px 1fr 44px}.qr-copy b{font-size:25px}.feature-grid{gap:7px}.feature-card{min-height:174px;border-radius:23px}.round-icon{width:58px;height:58px}.feature-card span{font-size:9px}.resource-grid{gap:7px}.resource-tile{padding-left:5px;padding-right:5px}.bottom-nav a{font-size:7px}}
+    @media(prefers-reduced-motion:no-preference){.qr-card,.feature-card,.resource-tile{transition:transform .16s ease,box-shadow .16s ease}.qr-card:hover,.feature-card:hover,.resource-tile:hover{transform:translateY(-2px)}.sun{animation:sunFloat 4s ease-in-out infinite}.birds{animation:birdDrift 5s ease-in-out infinite}}
+    @keyframes sunFloat{50%{transform:translateY(-4px)}}@keyframes birdDrift{50%{transform:translate(6px,-3px) rotate(-5deg)}}
   </style>
 </head>
 <body>
-<main class="app">
-  <section class="hero">
-    <div class="hero-badges"><span class="hero-kicker">TODAY'S STEP</span><span class="daily-badge">✦ 毎日の一歩を応援</span></div>
-    <div class="brand"><img class="logo" src="step-logo.svg" alt="STEP"><div class="hero-copy"><h1>STEP 塾生アプリ</h1><p>勉強も、お知らせも、いつもの入口をひとつに。</p></div><div class="hero-visual" aria-hidden="true"><svg viewBox="0 0 64 64"><path class="accent" d="m32 8 4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1z"/><path d="M14 34h14c4 0 7 3 7 7v13H20c-3 0-6-3-6-6z"/><path d="M50 34H36c-4 0-7 3-7 7v13h15c3 0 6-3 6-6z"/><path d="M22 41h7M42 41h-7"/></svg></div></div>
-    <div class="hello"><span>今日のメッセージ</span><strong>今日も一歩ずつ進もう！</strong></div>
-  </section>
+<main class="app" id="top">
+  <section class="sky" aria-label="塾生ホーム">
+    <span class="birds" aria-hidden="true">⌁⌁</span><span class="sun" aria-hidden="true"></span><span class="hill hill-one" aria-hidden="true"></span><span class="hill hill-two" aria-hidden="true"></span>
+    <header class="hero-head">
+      <a class="top-action notice-action" href="#notice"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 24h14M11 24v-9a5 5 0 0 1 10 0v9M14 27a2 2 0 0 0 4 0"/><path d="M8 24h16"/></svg><span>お知らせ</span></a>
+      <h1 id="heroGreeting" class="greeting">こんにちは！</h1>
+      <p class="encourage">今日も一歩ずつ進もう！</p>
+    </header>
 
-  <section class="common-login" aria-labelledby="commonLoginTitle">
-    <div id="commonLoggedOut">
+    <section id="commonLoggedOut" class="login-card common-login" aria-labelledby="commonLoginTitle">
       <h2 id="commonLoginTitle">塾生共通ログイン</h2>
       <p>初回だけ生徒ID・パスワードを入力すると、自分のQR・成績管理・学習進捗管理を続けて開けます。</p>
       <form id="commonLoginForm" class="common-fields" autocomplete="off">
@@ -81,56 +109,68 @@
         <button id="commonLoginButton" type="submit">ログイン</button>
       </form>
       <div id="commonLoginMessage" class="common-message" role="alert" aria-live="polite"></div>
-    </div>
-    <div id="commonLoggedIn" class="common-status hidden">
-      <div class="student-identity" aria-label="ログイン中の塾生情報">
-        <div id="commonStudentName" class="student-name"></div>
-        <div class="student-meta"><span>ID：<b id="commonStudentCode"></b></span><span>校舎：<b id="commonStudentCampus"></b></span></div>
-      </div>
-      <button id="commonLogoutButton" class="common-logout" type="button">ログアウト</button>
+    </section>
+
+    <div id="commonLoggedIn" class="logged-in-home hidden">
+      <button id="commonLogoutButton" class="top-action common-logout" type="button"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 6H6v20h7M20 10l6 6-6 6M10 16h16"/></svg><span>ログアウト</span></button>
+      <section class="identity-card" aria-label="ログイン中の塾生情報">
+        <div class="identity-item"><span class="identity-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="18" rx="3"/><circle cx="12" cy="14" r="3"/><path d="M8 21c1-4 7-4 8 0M19 12h5M19 17h5M19 21h4"/></svg></span><span><small class="identity-label">生徒ID</small><b id="commonStudentCode" class="identity-value"></b></span></div>
+        <div class="identity-item"><span class="identity-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11" r="5"/><path d="M7 27c1-8 17-8 18 0"/></svg></span><span><small class="identity-label">氏名</small><b id="commonStudentName" class="identity-value"></b></span></div>
+        <div class="identity-item"><span class="identity-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V12l11-7 11 7v15M3 27h26M12 27v-7h8v7M10 14h3M19 14h3"/><path d="M16 6v6M12 9h8"/></svg></span><span><small class="identity-label">校舎名</small><b id="commonStudentCampus" class="identity-value"></b></span></div>
+      </section>
     </div>
   </section>
 
-  <section class="quick" aria-label="よく使う機能">
-    <a class="qr requires-common" href="./my_qr.html"><div class="feature-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 13V4h9M19 4h9v9M28 19v9h-9M13 28H4v-9"/><rect x="8" y="8" width="6" height="6"/><path d="M19 9h5M19 14h3M9 19h4v4H9zM18 19h3v3h3v5M18 27h2"/></svg></div><div class="go">›</div><b>自分のQR</b><span>本人専用QRをすぐに表示</span></a>
-    <a class="progress requires-common" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><div class="feature-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5a11 11 0 1 0 11 11"/><path d="M16 5v11h11"/><path d="M10 20l4-4 3 3 7-8"/></svg></div><div class="go">›</div><b>学習進捗</b><span>進捗・達成度・目標範囲</span></a>
-  </section>
+  <a class="qr-card requires-common" href="./my_qr.html">
+    <span class="qr-medallion"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 12V3h9M20 3h9v9M29 20v9h-9M12 29H3v-9"/><rect x="7" y="7" width="7" height="7"/><rect x="19" y="7" width="6" height="6"/><rect x="7" y="19" width="6" height="6"/><path d="M18 18h4v3h4v5M18 26h3M25 17v2"/></svg></span>
+    <span class="qr-copy"><b>自分のQR <em class="sparkle">✦</em></b><span>入退室のときに読み取らせてください</span></span>
+    <svg class="mascot" viewBox="0 0 100 120" aria-hidden="true"><path fill="#fff" d="M49 10c18 0 28 11 29 27 15 7 20 22 13 35-4 8-11 13-19 13-2 17-11 28-28 28S17 99 19 81C5 75 1 61 7 48c4-8 12-13 20-13C29 19 37 10 49 10z"/><path fill="#dff3ff" d="M21 79c13 8 37 9 51 1-1 20-10 32-28 32-15 0-25-13-23-33z"/><circle cx="38" cy="51" r="4" fill="#18314f"/><circle cx="61" cy="51" r="4" fill="#18314f"/><circle cx="31" cy="61" r="5" fill="#ffc8cf"/><circle cx="68" cy="61" r="5" fill="#ffc8cf"/><path d="M46 60c3 4 6 4 9 0" fill="none" stroke="#18314f" stroke-width="3" stroke-linecap="round"/><rect x="7" y="67" width="29" height="42" rx="5" fill="#49677e" transform="rotate(-8 7 67)"/><rect x="11" y="72" width="21" height="28" rx="2" fill="#fff" transform="rotate(-8 11 72)"/><path d="M15 77h7v7h-7zm11 0h3v3h-3zm-10 11h3v3h-3zm6-2h7v7h-7zm-5 9h4" fill="none" stroke="#123a68" stroke-width="2"/></svg>
+    <span class="qr-go">›</span>
+  </a>
 
-  <div class="section-title"><h2>学習メニュー</h2><span>毎日の学習はこちら</span></div>
-  <nav class="grid">
-    <a class="card grade requires-common" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><div class="card-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26V15h5v11M14 26V9h5v17M22 26V5h5v21M4 26h25"/><path d="M7 10l7-4 5 2 7-5"/></svg></div><b>成績管理</b><span>定期テスト・通知表・志望校を確認</span></a>
-    <a class="card forest" href="https://forestaplus.com/student/auth/login"><div class="card-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="19" rx="3"/><path class="play" d="M13 11.5 22 16l-9 4.5z"/><path d="M10 29h12"/></svg></div><b>フォレスタプラス</b><span>映像講座を視聴（塾ID「124」）</span></a>
+  <nav class="feature-grid" aria-label="学習メニュー">
+    <a class="feature-card progress requires-common" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><span class="round-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V18h5v9M14 27V13h5v14M23 27V8h4v19M4 27h25M7 15l7-6 5 3 8-8M22 4h5v5"/></svg></span><b>学習進捗</b><span>今日の進捗を<br>チェックしよう！</span><i class="card-arrow">›</i></a>
+    <a class="feature-card grade requires-common" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><span class="round-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4h18v24H7zM11 9h10M11 14h7M11 19h10M11 24h5"/><path d="M21 16l2 2 4-5"/></svg></span><b>成績管理</b><span>テスト結果や<br>成績を確認！</span><i class="card-arrow">›</i></a>
+    <a class="feature-card forest" href="https://forestaplus.com/student/auth/login"><span class="round-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="19" rx="3"/><path class="play" d="M13 11.5 22 16l-9 4.5z"/><path d="M10 29h12"/></svg></span><b>フォレスタ<br>プラス</b><span>映像授業で<br>わかるまで学ぼう！</span><i class="card-arrow">›</i></a>
   </nav>
 
-  <div class="section-title"><h2>お知らせ・資料</h2><span>必要なページを直接開きます</span></div>
+  <a id="notice" class="notice-banner" href="https://www.step-edu.net/%E8%A4%87%E8%A3%BD-line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 18h5l13 6V8L9 14H4zM9 18l2 10h5l-2-8M25 12c3 2 3 6 0 8"/></svg><b>お知らせ</b><span>最新のお知らせを見る</span><strong>›</strong></a>
 
-  <section class="group" id="examPanel">
-    <button class="group-main exam" id="examToggle" type="button" aria-expanded="false"><i class="group-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h16v24H8zM12 9h8M12 14h8M12 19h5"/></svg></i><span><b>愛知全県模試</b><small>日程・範囲・高校コード表</small></span><span class="arrow">›</span></button>
-    <div class="group-links">
-      <a class="mini" href="https://drive.google.com/file/d/1imGWgnzIdP69yqtmqLIi6IvXgslTeLaW/view?usp=sharing"><i>🗓️</i><b>全県模試日程<small>実施日を確認</small></b></a>
-      <a class="mini" href="https://www.zenkenmoshi.jp/about/"><i>📖</i><b>全県模試範囲<small>学年別の出題範囲</small></b></a>
-      <a class="mini" href="https://drive.google.com/file/d/1J6IQB1Nu9xbolbDAR6FrVGZleKjZ1XbT/view?usp=sharing"><i>🏫</i><b>高校コード表<small>志望校コードを確認</small></b></a>
-    </div>
+  <div class="section-heading"><h2>資料・入試情報</h2><span>必要な情報をすぐ確認</span></div>
+  <div class="resource-grid">
+    <button class="resource-tile" id="admissionToggle" type="button" aria-expanded="false"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="m4 18 20-11 20 11-20 11zM11 24v11c8 7 18 7 26 0V24M44 18v15"/><path d="M39 33v7"/></svg><b>愛知県入試制度</b><small>制度・入試情報</small></button>
+    <button class="resource-tile" id="examToggle" type="button" aria-expanded="false"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 6h28v36H10zM16 14h16M16 21h16M16 28h11M16 35h7"/><path d="M34 31v8M30 35h8"/></svg><b>愛知全県模試</b><small>日程・範囲</small></button>
+    <button class="resource-tile" id="materialsToggle" type="button" aria-expanded="false"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h14c4 0 7 3 7 7v27H15c-4 0-7-3-7-7z"/><path d="M40 8H26c-4 0-7 3-7 7v27h14c4 0 7-3 7-7zM14 17h8M14 24h8M31 17h4M31 24h4"/></svg><b>学習資料</b><small>予定・過去問</small></button>
+  </div>
+
+  <section class="resource-panel" id="admissionPanel">
+    <a class="mini wide" href="https://www.zenkenmoshi.jp/exam/"><i>📰</i><b>高校入試情報<small>最新の入試情報を確認</small></b></a>
+    <a class="mini" href="https://drive.google.com/file/d/16W1_1cm3W92AiDo5LL1vsI8OAM6zdaFB/view"><i>✏️</i><b>マークシート方式とは<small>回答方式を確認</small></b></a>
+    <a class="mini" href="https://drive.google.com/file/d/1C1ouBIKm6adDgTjIe--hQRGBJ5Mx7-oX/view"><i>📘</i><b>入試制度変更<small>制度変更を確認</small></b></a>
   </section>
-
-  <section class="group" id="admissionPanel">
-    <button class="group-main admission" id="admissionToggle" type="button" aria-expanded="false"><i class="group-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 12 13-7 13 7-13 7zM8 16v7c5 4 11 4 16 0v-7M29 12v9"/></svg></i><span><b>愛知県入試制度</b><small>制度・入試情報・マークシート方式</small></span><span class="arrow">›</span></button>
-    <div class="group-links">
-      <a class="mini wide" href="https://www.zenkenmoshi.jp/exam/"><i>📰</i><b>高校入試情報<small>最新の入試情報を確認</small></b></a>
-      <a class="mini" href="https://drive.google.com/file/d/16W1_1cm3W92AiDo5LL1vsI8OAM6zdaFB/view"><i>✏️</i><b>マークシート方式とは<small>回答方式を確認</small></b></a>
-      <a class="mini" href="https://drive.google.com/file/d/1C1ouBIKm6adDgTjIe--hQRGBJ5Mx7-oX/view"><i>📘</i><b>入試制度変更<small>愛知県の入試制度変更を確認</small></b></a>
-    </div>
+  <section class="resource-panel" id="examPanel">
+    <a class="mini" href="https://drive.google.com/file/d/1imGWgnzIdP69yqtmqLIi6IvXgslTeLaW/view?usp=sharing"><i>🗓️</i><b>全県模試日程<small>実施日を確認</small></b></a>
+    <a class="mini" href="https://www.zenkenmoshi.jp/about/"><i>📖</i><b>全県模試範囲<small>学年別の出題範囲</small></b></a>
+    <a class="mini wide" href="https://drive.google.com/file/d/1J6IQB1Nu9xbolbDAR6FrVGZleKjZ1XbT/view?usp=sharing"><i>🏫</i><b>高校コード表<small>志望校コードを確認</small></b></a>
   </section>
-
-  <nav class="links">
+  <section class="resource-panel" id="materialsPanel">
     <a class="mini" href="https://www.step-edu.net/%E8%A4%87%E8%A3%BD-line%E7%94%A8%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B%E3%83%9A%E3%83%BC%E3%82%B8"><i>📅</i><b>年間カレンダー<small>年間予定を確認</small></b></a>
     <a class="mini" href="https://www.step-edu.net/services-4"><i>🌻</i><b>休み講習<small>講習案内を確認</small></b></a>
     <a class="mini wide" href="https://www.zenkenmoshi.jp/past-exam/"><i>📚</i><b>高校入試過去問<small>公立高校入試問題</small></b></a>
-  </nav>
+  </section>
 
   <button id="installBtn" class="install" type="button">ホーム画面にアプリを追加</button>
   <footer class="foot">個別指導STEP 神領校・大手町校<br>運営：株式会社エデュクレスト</footer>
 </main>
+
+<nav class="bottom-nav" aria-label="メインナビゲーション">
+  <a href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m4 15 12-10 12 10M7 13v15h18V13M13 28v-9h6v9"/></svg><span>ホーム</span></a>
+  <a class="requires-common" href="./my_qr.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 12V3h9M20 3h9v9M29 20v9h-9M12 29H3v-9"/><rect x="7" y="7" width="7" height="7"/><path d="M19 7h6v6h-6zM7 19h6v6H7zM18 18h4v3h4v5M18 26h3"/></svg><span>自分のQR</span></a>
+  <a class="requires-common" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 27V18h5v9M14 27V13h5v14M23 27V7h4v20M4 27h25"/></svg><span>学習進捗</span></a>
+  <a class="requires-common" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4h18v24H7zM11 10h10M11 15h10M11 20h7M11 25h5"/></svg><span>成績管理</span></a>
+  <a href="https://forestaplus.com/student/auth/login"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="19" rx="3"/><path class="play" d="M13 11.5 22 16l-9 4.5z"/><path d="M10 29h12"/></svg><span>フォレスタプラス</span></a>
+</nav>
+
 <script>
 const COMMON_TOKEN_KEY='stepCommonStudentSessionToken';
 const COMMON_EXPIRES_KEY='stepCommonStudentSessionExpiresAt';
@@ -140,14 +180,15 @@ async function commonApi(payload){const response=await fetch(await resolveCommon
 function readCommonSession(){try{const token=localStorage.getItem(COMMON_TOKEN_KEY)||'',expiresAt=localStorage.getItem(COMMON_EXPIRES_KEY)||'';return token&&expiresAt&&new Date(expiresAt).getTime()>Date.now()?{token,expiresAt}:null}catch(error){return null}}
 function saveCommonSession(token,expiresAt){localStorage.setItem(COMMON_TOKEN_KEY,String(token));localStorage.setItem(COMMON_EXPIRES_KEY,String(expiresAt))}
 function clearCommonSession(){localStorage.removeItem(COMMON_TOKEN_KEY);localStorage.removeItem(COMMON_EXPIRES_KEY);sessionStorage.removeItem('fsSession');sessionStorage.removeItem('studentMe');sessionStorage.removeItem('stepMyQrDisplayCache');localStorage.removeItem('stepMyQrSessionToken');localStorage.removeItem('stepMyQrSessionExpiresAt')}
-function renderCommonLogin(loggedIn,profile={}){document.getElementById('commonLoggedOut').classList.toggle('hidden',loggedIn);document.getElementById('commonLoggedIn').classList.toggle('hidden',!loggedIn);document.getElementById('commonStudentName').textContent=loggedIn?(profile.name||'氏名未登録'):'';document.getElementById('commonStudentCode').textContent=loggedIn?(profile.studentId||'未登録'):'';document.getElementById('commonStudentCampus').textContent=loggedIn?(profile.campus||'未登録'):''}
+function greetingForHour(){const hour=new Date().getHours();return hour<11?'おはよう':hour<18?'こんにちは':'こんばんは'}
+function renderCommonLogin(loggedIn,profile={}){document.getElementById('commonLoggedOut').classList.toggle('hidden',loggedIn);document.getElementById('commonLoggedIn').classList.toggle('hidden',!loggedIn);const name=loggedIn?(profile.name||'氏名未登録'):'';document.getElementById('commonStudentName').textContent=name;document.getElementById('commonStudentCode').textContent=loggedIn?(profile.studentId||'未登録'):'';document.getElementById('commonStudentCampus').textContent=loggedIn?(profile.campus||'未登録'):'';document.getElementById('heroGreeting').textContent=loggedIn?`${greetingForHour()}！ ${name}さん 👋`:`${greetingForHour()}！`}
 async function validateCommonSession(){const session=readCommonSession();if(!session){clearCommonSession();renderCommonLogin(false);return false}try{const result=await commonApi({action:'getCommonStudentSession',token:session.token});if(!result.success||result.role!=='STUDENT'||!result.profile)throw new Error('INVALID_SESSION');renderCommonLogin(true,result.profile);return true}catch(error){clearCommonSession();renderCommonLogin(false);return false}}
 document.getElementById('commonLoginForm').addEventListener('submit',async event=>{event.preventDefault();const id=document.getElementById('commonStudentId').value.trim(),password=document.getElementById('commonPassword').value,button=document.getElementById('commonLoginButton'),message=document.getElementById('commonLoginMessage');button.disabled=true;button.textContent='確認中…';message.textContent='';try{const result=await commonApi({action:'studentLogin',studentId:id,password});if(!result.success||result.role!=='STUDENT'||!result.token||!result.expiresAt||!result.profile)throw new Error(result.error||'生徒IDまたはパスワードが違います。');saveCommonSession(result.token,result.expiresAt);document.getElementById('commonStudentId').value='';document.getElementById('commonPassword').value='';renderCommonLogin(true,result.profile)}catch(error){document.getElementById('commonPassword').value='';message.textContent=error.message||'ログインできませんでした。'}finally{button.disabled=false;button.textContent='ログイン'}});
-document.getElementById('commonLogoutButton').addEventListener('click',async()=>{const session=readCommonSession();clearCommonSession();renderCommonLogin(false);if(session)commonApi({action:'logout',token:session.token}).catch(()=>{})});
+document.getElementById('commonLogoutButton').addEventListener('click',async()=>{if(!window.confirm('ログアウトしますか？'))return;const session=readCommonSession();clearCommonSession();renderCommonLogin(false);if(session)commonApi({action:'logout',token:session.token}).catch(()=>{})});
 document.querySelectorAll('.requires-common').forEach(link=>link.addEventListener('click',event=>{if(readCommonSession())return;event.preventDefault();document.getElementById('commonLoginTitle').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('commonStudentId').focus();document.getElementById('commonLoginMessage').textContent='先に塾生共通ログインをしてください。'}));
 validateCommonSession();
 function setupGroup(panelId,toggleId){const panel=document.getElementById(panelId),toggle=document.getElementById(toggleId);toggle.addEventListener('click',()=>{const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
-setupGroup('examPanel','examToggle');setupGroup('admissionPanel','admissionToggle');
+setupGroup('examPanel','examToggle');setupGroup('admissionPanel','admissionToggle');setupGroup('materialsPanel','materialsToggle');
 let deferredPrompt=null;const installBtn=document.getElementById('installBtn');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block'});installBtn.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none'});if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script>
 </body>
