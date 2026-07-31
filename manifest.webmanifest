@@ -1,0 +1,14 @@
+{
+  "name": "STEP 塾生アプリ",
+  "short_name": "STEP塾生",
+  "description": "個別指導STEPの塾生用アプリ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f9",
+  "theme_color": "#173f68",
+  "lang": "ja",
+  "icons": [
+    {"src":"step-logo.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
