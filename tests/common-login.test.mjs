@@ -25,7 +25,15 @@ test('common session validation and logout use the server', () => {
   assert.match(page, /action:'logout',token:session\.token/);
   assert.match(page, /clearCommonSession\(\)/);
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
-  assert.match(sw, /step-student-v5/);
+  assert.match(sw, /step-student-v6/);
+});
+
+test('logged-in state shows the verified student identity without a large status label', () => {
+  assert.match(page, /id="commonStudentName"/);
+  assert.match(page, /ID：<b id="commonStudentCode"/);
+  assert.match(page, /校舎：<b id="commonStudentCampus"/);
+  assert.match(page, /renderCommonLogin\(true,result\.profile\)/);
+  assert.doesNotMatch(page, /<strong>ログイン済み<\/strong>/);
 });
 
 test('student home uses purpose-specific QR, progress, grade, and video designs', () => {
@@ -35,4 +43,5 @@ test('student home uses purpose-specific QR, progress, grade, and video designs'
   assert.match(page, /class="card grade requires-common"[\s\S]*?定期テスト・通知表・志望校/);
   assert.match(page, /class="card forest"[\s\S]*?class="play"/);
   assert.match(page, /class="group-symbol"/);
+  assert.match(page, /\.qr \.feature-icon\{background:linear-gradient\(145deg,var\(--blue\),var\(--navy\)\)\}/);
 });
