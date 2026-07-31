@@ -24,5 +24,15 @@ test('common session validation and logout use the server', () => {
   assert.match(page, /action:'getCommonStudentSession',token:session\.token/);
   assert.match(page, /action:'logout',token:session\.token/);
   assert.match(page, /clearCommonSession\(\)/);
-  assert.match(sw, /step-student-v4/);
+  assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
+  assert.match(sw, /step-student-v5/);
+});
+
+test('student home uses purpose-specific QR, progress, grade, and video designs', () => {
+  assert.match(page, /class="feature-icon"[\s\S]*?<svg/);
+  assert.match(page, /class="qr requires-common"[\s\S]*?本人専用QRをすぐに表示/);
+  assert.match(page, /class="progress requires-common"[\s\S]*?進捗・達成度・目標範囲/);
+  assert.match(page, /class="card grade requires-common"[\s\S]*?定期テスト・通知表・志望校/);
+  assert.match(page, /class="card forest"[\s\S]*?class="play"/);
+  assert.match(page, /class="group-symbol"/);
 });

@@ -27,6 +27,19 @@
     @media(max-width:390px){.quick,.grid,.links,.group.open .group-links{grid-template-columns:1fr}.quick a{min-height:124px}.card{min-height:112px}.logo{width:64px;height:64px}.wide{grid-column:auto}}
     @media(max-width:560px){.common-fields{grid-template-columns:1fr}.common-fields button{width:100%}}
   </style>
+  <style>
+    :root{--navy:#103f70;--blue:#1774ae;--sky:#eaf5fc;--red:#e7353d;--text:#15283a;--muted:#63778a;--line:#dbe6ef}
+    body{background:linear-gradient(180deg,#edf6fc 0,#f8fafc 280px,#f4f7fa 100%)}
+    .app{max-width:680px;padding-left:12px;padding-right:12px}.hero{position:relative;overflow:hidden;margin-top:8px;padding:22px;border-radius:26px;background:linear-gradient(128deg,#0f3b68 0,#176b9f 76%,#e7353d 160%)}.hero:after{content:"";position:absolute;width:150px;height:150px;right:-55px;top:-70px;border:30px solid rgba(255,255,255,.09);border-radius:50%}.logo{width:66px;height:66px;border-radius:18px}.hero h1{font-size:22px;letter-spacing:.02em}.hello strong{font-size:19px}
+    .common-login{border:1px solid #cfe0ec;border-radius:20px;box-shadow:0 8px 22px rgba(16,63,112,.08)}.common-login h2{color:var(--navy)}.common-fields button{background:linear-gradient(135deg,var(--navy),var(--blue))}.common-status strong:before{content:"●";margin-right:7px;font-size:9px}
+    .quick{grid-template-columns:1.08fr .92fr;gap:10px}.quick a,.card{border-radius:20px;box-shadow:0 8px 22px rgba(16,63,112,.08);transition:transform .15s,box-shadow .15s}.quick a{min-height:156px;padding:17px}.qr{background:linear-gradient(145deg,#fff 25%,#fff0f1);border:2px solid #f4c8cb}.progress{background:linear-gradient(145deg,#fff 20%,#e9f6fd);border:2px solid #c9e4f3}.feature-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:16px;color:#fff;box-shadow:0 7px 16px rgba(16,63,112,.16)}.feature-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.qr .feature-icon{background:linear-gradient(145deg,var(--red),#bd2531)}.progress .feature-icon{background:linear-gradient(145deg,var(--blue),var(--navy))}.quick b{color:var(--navy);font-size:18px}.go{color:var(--red);font-weight:900}
+    .section-title{margin-top:24px}.section-title h2{color:var(--navy);font-size:18px}.section-title h2:after{content:"";display:block;width:30px;height:3px;margin-top:5px;border-radius:2px;background:var(--red)}
+    .card{min-height:145px;padding:16px;border-width:2px}.card-icon{width:51px;height:51px;display:grid;place-items:center;border-radius:15px;color:#fff}.card-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.grade{background:linear-gradient(145deg,#fff 25%,#eef3ff);border-color:#d6def4}.grade .card-icon{background:linear-gradient(145deg,#506fc0,#314d9d)}.forest{background:linear-gradient(145deg,#fff 25%,#eef7ff);border-color:#cee4f3}.forest .card-icon{background:linear-gradient(145deg,#1c82bd,#105482)}.forest .card-icon .play{fill:#fff;stroke:none}.card b{color:var(--navy)}
+    .group{border-radius:19px;border-color:#d5e3ed}.group-main{min-height:82px;background:#fff!important;border-left:5px solid var(--blue);padding:15px}.group-main.admission{border-left-color:var(--red)}.group-symbol{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--sky);color:var(--navy)}.group-symbol svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:2}.group-main.admission .group-symbol{background:#fff0f1;color:#b92631}.arrow{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#eef4f8;color:var(--navy)}.group.open .arrow{background:var(--navy);color:#fff}.group-links{border-top:1px solid var(--line);background:#f8fafc;padding-top:10px}.mini{border-radius:15px;box-shadow:none}.mini i{font-size:20px}
+    .install{background:#e5f0f7}.foot{color:#758797}
+    @media(max-width:390px){.quick{grid-template-columns:1fr 1fr}.quick a{min-height:148px;padding:15px}.quick b{font-size:16px}.quick span{font-size:11px}.grid{grid-template-columns:1fr 1fr}.card{min-height:137px}.logo{width:58px;height:58px}.hero{padding:18px}.hero h1{font-size:20px}.group.open .group-links,.links{grid-template-columns:1fr}.wide{grid-column:auto}}
+    @media(max-width:350px){.quick,.grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <main class="app">
@@ -53,20 +66,20 @@
   </section>
 
   <section class="quick" aria-label="よく使う機能">
-    <a class="qr requires-common" href="https://stepkobetsu-hub.github.io/student-QR/my_qr.html"><div class="bubble">▦</div><div class="go">›</div><b>自分のQR</b><span>初回認証後はすぐに本人のQRを表示</span></a>
-    <a class="progress requires-common" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><div class="bubble">✓</div><div class="go">›</div><b>学習進捗</b><span>宿題・進捗・目標範囲</span></a>
+    <a class="qr requires-common" href="https://stepkobetsu-hub.github.io/student-QR/my_qr.html"><div class="feature-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 13V4h9M19 4h9v9M28 19v9h-9M13 28H4v-9"/><rect x="8" y="8" width="6" height="6"/><path d="M19 9h5M19 14h3M9 19h4v4H9zM18 19h3v3h3v5M18 27h2"/></svg></div><div class="go">›</div><b>自分のQR</b><span>本人専用QRをすぐに表示</span></a>
+    <a class="progress requires-common" href="https://stepkobetsu-hub.github.io/foresta-step-progress/"><div class="feature-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5a11 11 0 1 0 11 11"/><path d="M16 5v11h11"/><path d="M10 20l4-4 3 3 7-8"/></svg></div><div class="go">›</div><b>学習進捗</b><span>進捗・達成度・目標範囲</span></a>
   </section>
 
   <div class="section-title"><h2>学習メニュー</h2><span>毎日の学習はこちら</span></div>
   <nav class="grid">
-    <a class="card grade requires-common" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><div class="emoji">📊</div><b>成績管理</b><span>定期テスト・通知表・志望校を確認します</span></a>
-    <a class="card forest" href="https://forestaplus.com/student/auth/login"><div class="emoji">🌳</div><b>フォレスタプラス</b><span>塾IDは「124」です</span></a>
+    <a class="card grade requires-common" href="https://stepkobetsu-hub.github.io/seiseki-kanri/juku_app.html"><div class="card-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26V15h5v11M14 26V9h5v17M22 26V5h5v21M4 26h25"/><path d="M7 10l7-4 5 2 7-5"/></svg></div><b>成績管理</b><span>定期テスト・通知表・志望校を確認</span></a>
+    <a class="card forest" href="https://forestaplus.com/student/auth/login"><div class="card-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="6" width="26" height="19" rx="3"/><path class="play" d="M13 11.5 22 16l-9 4.5z"/><path d="M10 29h12"/></svg></div><b>フォレスタプラス</b><span>映像講座を視聴（塾ID「124」）</span></a>
   </nav>
 
   <div class="section-title"><h2>お知らせ・資料</h2><span>必要なページを直接開きます</span></div>
 
   <section class="group" id="examPanel">
-    <button class="group-main exam" id="examToggle" type="button" aria-expanded="false"><i>📝</i><span><b>愛知全県模試</b><small>日程・範囲・高校コード表</small></span><span class="arrow">›</span></button>
+    <button class="group-main exam" id="examToggle" type="button" aria-expanded="false"><i class="group-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4h16v24H8zM12 9h8M12 14h8M12 19h5"/></svg></i><span><b>愛知全県模試</b><small>日程・範囲・高校コード表</small></span><span class="arrow">›</span></button>
     <div class="group-links">
       <a class="mini" href="https://drive.google.com/file/d/1imGWgnzIdP69yqtmqLIi6IvXgslTeLaW/view?usp=sharing"><i>🗓️</i><b>全県模試日程<small>実施日を確認</small></b></a>
       <a class="mini" href="https://www.zenkenmoshi.jp/about/"><i>📖</i><b>全県模試範囲<small>学年別の出題範囲</small></b></a>
@@ -75,7 +88,7 @@
   </section>
 
   <section class="group" id="admissionPanel">
-    <button class="group-main admission" id="admissionToggle" type="button" aria-expanded="false"><i>🎓</i><span><b>愛知県入試制度</b><small>制度・入試情報・マークシート方式</small></span><span class="arrow">›</span></button>
+    <button class="group-main admission" id="admissionToggle" type="button" aria-expanded="false"><i class="group-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 12 13-7 13 7-13 7zM8 16v7c5 4 11 4 16 0v-7M29 12v9"/></svg></i><span><b>愛知県入試制度</b><small>制度・入試情報・マークシート方式</small></span><span class="arrow">›</span></button>
     <div class="group-links">
       <a class="mini wide" href="https://www.zenkenmoshi.jp/exam/"><i>📰</i><b>高校入試情報<small>最新の入試情報を確認</small></b></a>
       <a class="mini" href="https://drive.google.com/file/d/16W1_1cm3W92AiDo5LL1vsI8OAM6zdaFB/view"><i>✏️</i><b>マークシート方式とは<small>回答方式を確認</small></b></a>
@@ -100,7 +113,7 @@ function resolveCommonApiUrl(){if(!commonApiUrlPromise){commonApiUrlPromise=fetc
 async function commonApi(payload){const response=await fetch(await resolveCommonApiUrl(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),cache:'no-store',redirect:'follow'});if(!response.ok)throw new Error('ログインサーバーへ接続できません。');return response.json()}
 function readCommonSession(){try{const token=localStorage.getItem(COMMON_TOKEN_KEY)||'',expiresAt=localStorage.getItem(COMMON_EXPIRES_KEY)||'';return token&&expiresAt&&new Date(expiresAt).getTime()>Date.now()?{token,expiresAt}:null}catch(error){return null}}
 function saveCommonSession(token,expiresAt){localStorage.setItem(COMMON_TOKEN_KEY,String(token));localStorage.setItem(COMMON_EXPIRES_KEY,String(expiresAt))}
-function clearCommonSession(){localStorage.removeItem(COMMON_TOKEN_KEY);localStorage.removeItem(COMMON_EXPIRES_KEY);sessionStorage.removeItem('fsSession');sessionStorage.removeItem('studentMe');localStorage.removeItem('stepMyQrSessionToken');localStorage.removeItem('stepMyQrSessionExpiresAt')}
+function clearCommonSession(){localStorage.removeItem(COMMON_TOKEN_KEY);localStorage.removeItem(COMMON_EXPIRES_KEY);sessionStorage.removeItem('fsSession');sessionStorage.removeItem('studentMe');sessionStorage.removeItem('stepMyQrDisplayCache');localStorage.removeItem('stepMyQrSessionToken');localStorage.removeItem('stepMyQrSessionExpiresAt')}
 function renderCommonLogin(loggedIn){document.getElementById('commonLoggedOut').classList.toggle('hidden',loggedIn);document.getElementById('commonLoggedIn').classList.toggle('hidden',!loggedIn)}
 async function validateCommonSession(){const session=readCommonSession();if(!session){clearCommonSession();renderCommonLogin(false);return false}try{const result=await commonApi({action:'getCommonStudentSession',token:session.token});if(!result.success||result.role!=='STUDENT')throw new Error('INVALID_SESSION');renderCommonLogin(true);return true}catch(error){clearCommonSession();renderCommonLogin(false);return false}}
 document.getElementById('commonLoginForm').addEventListener('submit',async event=>{event.preventDefault();const id=document.getElementById('commonStudentId').value.trim(),password=document.getElementById('commonPassword').value,button=document.getElementById('commonLoginButton'),message=document.getElementById('commonLoginMessage');button.disabled=true;button.textContent='確認中…';message.textContent='';try{const result=await commonApi({action:'studentLogin',studentId:id,password});if(!result.success||result.role!=='STUDENT'||!result.token||!result.expiresAt)throw new Error(result.error||'生徒IDまたはパスワードが違います。');saveCommonSession(result.token,result.expiresAt);document.getElementById('commonStudentId').value='';document.getElementById('commonPassword').value='';renderCommonLogin(true)}catch(error){document.getElementById('commonPassword').value='';message.textContent=error.message||'ログインできませんでした。'}finally{button.disabled=false;button.textContent='ログイン'}});
