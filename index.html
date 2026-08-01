@@ -29,15 +29,16 @@ a,button{-webkit-tap-highlight-color:transparent}.hidden{display:none!important}
 
 /* スマホではQR・時刻・ポイントを1枚のカード内へコンパクトに収める */
 @media(max-width:560px){
-  .hero-qr{grid-template-columns:78px minmax(0,1fr) 28px;gap:9px;min-height:118px;padding:11px 13px;border-radius:24px}
-  .qr-art{width:74px;height:74px;border-width:5px}
-  .qr-art svg{width:48px;height:48px}
-  .hero-copy>b{font-size:21px}
-  .hero-copy>span{margin-top:4px;font-size:10px}
-  .home-attendance{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:6px}
-  .home-attendance-item{min-width:0;padding:5px 2px;border-radius:9px;background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.42);color:#fff;font-size:7px;white-space:nowrap}
-  .home-attendance-item b{font-size:12px;color:#fff}
-  .hero-arrow{width:28px;height:28px;font-size:26px}
+  .hero-qr{grid-template-columns:78px minmax(0,1fr) 34px;gap:10px;min-height:132px;padding:13px 14px;border-radius:24px;align-items:center}
+  .qr-art{width:76px;height:76px;border-width:5px}
+  .qr-art svg{width:50px;height:50px}
+  .hero-copy{min-width:0}
+  .hero-copy>b{font-size:22px}
+  .hero-copy>span{margin-top:6px;font-size:10px}
+  .home-attendance{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:8px}
+  .home-attendance-item{min-width:0;padding:7px 2px 6px;border-radius:10px;background:rgba(255,255,255,.23);border-color:rgba(255,255,255,.55);color:#fff;font-size:9px;line-height:1.2;white-space:nowrap}
+  .home-attendance-item b{margin-top:3px;font-size:14px;line-height:1.15;color:#fff}
+  .hero-arrow{width:32px;height:32px;font-size:25px;line-height:1;align-self:center;justify-self:end}
 }
 </style>
 </head>
@@ -86,6 +87,6 @@ commonLoginForm.addEventListener('submit',async e=>{e.preventDefault();const id=
 async function logout(){const s=readCommonSession();clearCommonSession();renderCommonLogin(false);if(s)commonApi({action:'logout',token:s.token}).catch(()=>{})}topLogout.addEventListener('click',logout);
 document.querySelectorAll('.requires-common').forEach(link=>link.addEventListener('click',e=>{if(readCommonSession())return;e.preventDefault();commonLoginTitle.scrollIntoView({behavior:'smooth',block:'center'});commonStudentId.focus();commonLoginMessage.textContent='先に塾生共通ログインをしてください。'}));validateCommonSession();setInterval(refreshHomeAttendance,10000);
 function setupGroup(p,t){const panel=document.getElementById(p),toggle=document.getElementById(t);toggle.addEventListener('click',()=>{const open=panel.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))})}setupGroup('examPanel','examToggle');setupGroup('admissionPanel','admissionToggle');
-let deferredPrompt=null;const installBtn=document.getElementById('installBtn');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block'});installBtn.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none'});if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=19').catch(()=>{}));
+let deferredPrompt=null;const installBtn=document.getElementById('installBtn');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block'});installBtn.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none'});if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=20').catch(()=>{}));
 </script>
 </body></html>
