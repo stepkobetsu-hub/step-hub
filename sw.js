@@ -1,4 +1,4 @@
-const CACHE='step-student-v19-points';
+const CACHE='step-student-v20-qr-readability';
 const ASSETS=['./','./index.html','./my_qr.html','./forestaplus.html','./manifest.webmanifest','./step-logo.svg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim();});
