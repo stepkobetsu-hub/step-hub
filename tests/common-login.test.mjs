@@ -33,15 +33,15 @@ test('common session validation and logout still use the server', () => {
 
 test('own QR stays inside the student app scope without an extra app splash', () => {
   assert.match(qrShell, /<iframe[^>]+student-QR\/my_qr\.html/);
-  assert.doesNotMatch(qrShell, /manifest|icon-qr|camera|繧ｫ繝｡繝ｩ/);
+  assert.doesNotMatch(qrShell, /manifest|icon-qr|camera|カメラ/);
 });
 
 test('logged-in state shows the verified student identity without a large status label', () => {
   assert.match(page, /id="commonStudentName"/);
-  assert.match(page, /逕溷ｾ棚D<\/small><b id="commonStudentCode"/);
-  assert.match(page, /譬｡闊主錐<\/small><b id="commonStudentCampus"/);
+  assert.match(page, /生徒ID<\/small><b id="commonStudentCode"/);
+  assert.match(page, /校舎名<\/small><b id="commonStudentCampus"/);
   assert.match(page, /renderCommonLogin\(true,r\.profile\)/);
-  assert.doesNotMatch(page, /<strong>繝ｭ繧ｰ繧､繝ｳ貂医∩<\/strong>/);
+  assert.doesNotMatch(page, /<strong>ログイン済み<\/strong>/);
 });
 
 test('student identity stays in one cute three-column row on mobile', () => {
@@ -52,10 +52,10 @@ test('student identity stays in one cute three-column row on mobile', () => {
 });
 
 test('student home keeps purpose-specific QR, progress, grade, and video cards', () => {
-  assert.match(page, /class="hero-qr requires-common"[\s\S]*?閾ｪ蛻・・QR/);
-  assert.match(page, /class="feature-card progress-card requires-common"[\s\S]*?莉頑律縺ｮ騾ｲ謐・);
-  assert.match(page, /class="feature-card grade-card requires-common"[\s\S]*?繝・せ繝育ｵ先棡/);
-  assert.match(page, /class="feature-card forest-card"[\s\S]*?譏蜒乗肢讌ｭ/);
+  assert.match(page, /class="hero-qr requires-common"[\s\S]*?自分のQR/);
+  assert.match(page, /class="feature-card progress-card requires-common"[\s\S]*?今日の進捗/);
+  assert.match(page, /class="feature-card grade-card requires-common"[\s\S]*?テスト結果/);
+  assert.match(page, /class="feature-card forest-card"[\s\S]*?映像授業/);
   assert.match(page, /id="examToggle"/);
   assert.match(page, /id="admissionToggle"/);
 });
@@ -68,4 +68,3 @@ test('main cards are compact and the two mascots are decorative', () => {
   assert.match(page, /\.mascot\{pointer-events:none;user-select:none/);
   assert.doesNotMatch(page, /<div class="mascot[^>]*tabindex=/);
 });
-
