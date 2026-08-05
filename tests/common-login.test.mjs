@@ -22,12 +22,18 @@ test('the browser stores only the common token and its expiry', () => {
   assert.match(page, /commonPassword\.value=''/);
 });
 
+test('the student stays signed in until explicit logout', () => {
+  assert.match(page, /自分でログアウトするまで/);
+  assert.match(page, /return token\?\{token,expiresAt\}:null/);
+  assert.doesNotMatch(page, /new Date\(expiresAt\)\.getTime\(\)>Date\.now\(\)/);
+});
+
 test('common session validation and logout still use the server', () => {
   assert.match(page, /action:'getCommonStudentSession',token:s\.token/);
   assert.match(page, /action:'logout',token:s\.token/);
   assert.match(page, /clearCommonSession\(\)/);
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
-  assert.match(sw, /step-student-v15-rollback/);
+  assert.match(sw, /step-student-v21-persistent-login/);
   assert.match(sw, /'\.\/my_qr\.html'/);
 });
 
