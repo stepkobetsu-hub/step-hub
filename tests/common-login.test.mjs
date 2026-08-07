@@ -33,6 +33,8 @@ test('common session validation and logout still use the server', () => {
   assert.match(page, /action:'logout',token:s\.token/);
   assert.match(page, /clearCommonSession\(\)/);
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
+  assert.match(page, /clearSavedMyQr\(\);clearCommonSession\(\);renderCommonLogin\(false\)/);
+  assert.match(page, /localStorage\.removeItem\('stepMyQrDisplayCacheV5'\)/);
   assert.match(sw, /step-student-v21-persistent-login/);
   assert.match(sw, /'\.\/my_qr\.html'/);
 });
