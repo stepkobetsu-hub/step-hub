@@ -6,8 +6,8 @@ const page = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const sw = fs.readFileSync(new URL('../sw.js', import.meta.url), 'utf8');
 const qrShell = fs.readFileSync(new URL('../my_qr.html', import.meta.url), 'utf8');
 
-test('the three common-session features keep their main and bottom-nav links', () => {
-  assert.equal((page.match(/class="[^"]*requires-common[^"]*"/g) || []).length, 6);
+test('the four common-session features keep their main and bottom-nav links', () => {
+  assert.equal((page.match(/class="[^"]*requires-common[^"]*"/g) || []).length, 8);
   assert.match(page, /href="\.\/my_qr\.html"/);
   assert.match(qrShell, /student-QR\/my_qr\.html/);
   assert.match(page, /seiseki-kanri\/juku_app\.html/);
@@ -35,7 +35,7 @@ test('common session validation and logout still use the server', () => {
   assert.match(page, /sessionStorage\.removeItem\('stepMyQrDisplayCache'\)/);
   assert.match(page, /clearSavedMyQr\(\);clearCommonSession\(\);renderCommonLogin\(false\)/);
   assert.match(page, /localStorage\.removeItem\('stepMyQrDisplayCacheV5'\)/);
-  assert.match(sw, /step-student-v21-persistent-login/);
+  assert.match(sw, /step-student-v24-foresta-progress/);
   assert.match(sw, /'\.\/my_qr\.html'/);
 });
 
@@ -61,7 +61,8 @@ test('student identity stays in one cute three-column row on mobile', () => {
 
 test('student home keeps purpose-specific QR, progress, grade, and video cards', () => {
   assert.match(page, /class="hero-qr requires-common"[\s\S]*?自分のQR/);
-  assert.match(page, /class="feature-card progress-card requires-common"[\s\S]*?今日の進捗/);
+  assert.match(page, /class="feature-card progress-card requires-common"[\s\S]*?ステップ＆ゴール/);
+  assert.match(page, /class="feature-card foresta-progress-card requires-common"[\s\S]*?フォレスタ進捗/);
   assert.match(page, /class="feature-card grade-card requires-common"[\s\S]*?テスト結果/);
   assert.match(page, /class="feature-card forest-card"[\s\S]*?映像授業/);
   assert.match(page, /id="examToggle"/);
